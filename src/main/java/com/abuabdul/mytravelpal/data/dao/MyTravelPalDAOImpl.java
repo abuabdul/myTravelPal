@@ -16,10 +16,18 @@
  */
 package com.abuabdul.mytravelpal.data.dao;
 
+import org.springframework.data.mongodb.core.MongoTemplate;
+
 /**
  * @author abuabdul
  *
  */
 public class MyTravelPalDAOImpl implements MyTravelPalDAO {
+
+	private final MongoTemplate mongoTemplate;
+
+	public MyTravelPalDAOImpl(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
+	}
 
 }

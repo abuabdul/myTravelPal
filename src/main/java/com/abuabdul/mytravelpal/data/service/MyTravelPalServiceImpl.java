@@ -16,10 +16,18 @@
  */
 package com.abuabdul.mytravelpal.data.service;
 
+import com.abuabdul.mytravelpal.data.dao.MyTravelPalDAO;
+
 /**
  * @author abuabdul
  *
  */
 public class MyTravelPalServiceImpl implements MyTravelPalService {
+
+	private final MyTravelPalDAO myTravelPalDAO;
+
+	public MyTravelPalServiceImpl(MyTravelPalDAO myTravelPalDAO) {
+		this.myTravelPalDAO = myTravelPalDAO;
+	}
 
 }
