@@ -18,12 +18,14 @@ package com.abuabdul.mytravelpal.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author abuabdul
  *
  */
 @SpringBootApplication
+@ComponentScan("com.abuabdul.mytravelpal")
 public class MyTravelPalApplication {
 
 	public static void main(String[] args) {

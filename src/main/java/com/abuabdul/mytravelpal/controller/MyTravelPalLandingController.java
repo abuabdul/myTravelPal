@@ -16,28 +16,25 @@
  */
 package com.abuabdul.mytravelpal.controller;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author abuabdul
  *
  */
 
-@RestController
-@EnableAutoConfiguration
+@Controller
 public class MyTravelPalLandingController {
 
 	@RequestMapping(value = "/hello")
-	public String sayHelloToSpringBootWeb() {
-		return "Hello";
+	public ModelAndView sayHelloToSpringBootWeb(ModelMap model) {
+		return new ModelAndView("hello", model);
 	}
-
-	@RequestMapping(value = "/error")
-	public String handleError() {
-		return "Error";
-	}
-
-	// error.whitelabel.enabled=false
+	/*
+	 * @RequestMapping(value = "/error") public String handleError() { return
+	 * "Error"; }
+	 */
 }
