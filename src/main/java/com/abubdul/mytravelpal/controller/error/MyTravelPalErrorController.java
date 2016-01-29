@@ -16,17 +16,9 @@
  */
 package com.abubdul.mytravelpal.controller.error;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.boot.autoconfigure.web.BasicErrorController;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author abuabdul
@@ -42,28 +34,9 @@ public class MyTravelPalErrorController extends BasicErrorController {
 		super(errorAttributes, errorProperties);
 	}
 
-	@Override
-	public ResponseEntity<Map<String, Object>> error(HttpServletRequest request) {
-		return super.error(request);
-	}
+	/*
+	 * @RequestMapping(value = "/error", produces = "text/html") public String
+	 * errorPath() { return "errorView"; }
+	 */
 
-	@Override
-	public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
-		return super.errorHtml(request, response);
-	}
-
-	@Override
-	public String getErrorPath() {
-		return super.getErrorPath();
-	}
-
-	@Override
-	protected ErrorProperties getErrorProperties() {
-		return super.getErrorProperties();
-	}
-
-	@Override
-	protected boolean isIncludeStackTrace(HttpServletRequest request, MediaType produces) {
-		return super.isIncludeStackTrace(request, produces);
-	}
 }
