@@ -18,14 +18,26 @@
 /*
  *
  * @project   myTravelPal App
- * @date      18-Dec-2015
+ * @date      15-Dec-2015
  * @author    Abubacker Siddik A, Chennai, India <abuabdul86@hotmail.com>
  * @licensor  Apache License 2.0
  * @site      
  *
  */
- 
 body {
 	padding-top: 70px;
 	/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	margin: 40px 10px;
+	padding: 0;
+	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 14px;
+}
+
+.fa-sm {
+	font-size: 15px;
+}
+
+#TravelBoard {
+	max-width: 900px;
+	margin: 0 auto;
 }

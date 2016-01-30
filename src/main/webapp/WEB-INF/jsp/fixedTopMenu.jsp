@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">myTravelPal</a>
+                <a class="navbar-brand" href="<c:url value='/travel/planBoard.go'/>">my<i class="fa fa-motorcycle fa-sm"></i>TravelPal&nbsp;<i class="fa fa-train"></i></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -19,11 +19,11 @@
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Plan</a>
                     </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                   <li><a href="http://abuabdul.com">&copy; abuabdul.com 2013-2016</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

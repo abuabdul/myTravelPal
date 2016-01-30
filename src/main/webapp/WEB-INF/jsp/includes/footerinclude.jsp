@@ -10,4 +10,8 @@
 <script src="<c:url value='/resources/js/bootstrapValidator.min.js'/>"></script>
 <script src="<c:url value='/resources/js/validation.util.js'/>"></script>
 
+<!-- For Full Calendar -->
+<script src="<c:url value='/resources/js/moment.min.js'/>"></script>
+<script src="<c:url value='/resources/js/fullcalendar.min.js'/>"></script>
+
 <script src="<c:url value='/resources/js/myTravelPal.js'/>"></script>
