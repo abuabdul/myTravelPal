@@ -16,26 +16,10 @@
  */
 package com.abuabdul.mytravelpal.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 /**
  * @author abuabdul
  *
  */
-
-@Controller
-public class MyTravelPalLandingController {
-
-	@RequestMapping(value = "/")
-	public String index(ModelMap model) {
-		return "forward:/index.jsp";
-	}
-
-	@RequestMapping(value = "/travel/planBoard.go")
-	public String myTravelPal(ModelMap model) {
-		return "myTravelPal";
-	}
+public class MyTravelPalLandingControllerTest {
 
 }

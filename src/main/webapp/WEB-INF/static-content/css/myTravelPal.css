@@ -14,28 +14,18 @@
  * limitations under the License.
  * 
  */
-package com.abuabdul.mytravelpal.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-/**
- * @author abuabdul
+/*
+ *
+ * @project   myTravelPal App
+ * @date      18-Dec-2015
+ * @author    Abubacker Siddik A, Chennai, India <abuabdul86@hotmail.com>
+ * @licensor  Apache License 2.0
+ * @site      
  *
  */
-
-@Controller
-public class MyTravelPalLandingController {
-
-	@RequestMapping(value = "/")
-	public String index(ModelMap model) {
-		return "forward:/index.jsp";
-	}
-
-	@RequestMapping(value = "/travel/planBoard.go")
-	public String myTravelPal(ModelMap model) {
-		return "myTravelPal";
-	}
-
+ 
+body {
+	padding-top: 70px;
+	/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }

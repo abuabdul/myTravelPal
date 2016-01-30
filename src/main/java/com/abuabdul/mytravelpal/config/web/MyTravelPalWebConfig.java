@@ -28,6 +28,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
 
 /**
  * @author abuabdul
@@ -57,18 +58,13 @@ public class MyTravelPalWebConfig {
 
 			@Override
 			public void configureViewResolvers(ViewResolverRegistry registry) {
-				// registry.tiles().viewClass(TilesView.class);
+				registry.tiles().viewClass(TilesView.class);
 				registry.jsp("/WEB-INF/jsp/", ".jsp").viewClass(JstlView.class);
 			}
 
 		};
 	}
-
-	/*
-	 * @Bean public ErrorController errorController() { return new
-	 * MyTravelPalErrorController(errorAttributes, errorProperties); }
-	 */
-
+	
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
