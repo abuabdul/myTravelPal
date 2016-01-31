@@ -11,7 +11,7 @@
 
 <!-- Full Calendar -->
 <link href="<c:url value='/resources/css/fullcalendar.min.css'/>" rel="stylesheet"/>
-<link href="<c:url value='/resources/css/fullcalendar.print.css'/>" rel="stylesheet"/>
+<link href="<c:url value='/resources/css/fullcalendar.print.css'/>" rel="stylesheet" media="print"/>
 
 <link href="<c:url value='/resources/css/myTravelPal.css'/>" rel="stylesheet">
 
