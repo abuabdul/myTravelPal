@@ -27,6 +27,11 @@
 
 
 $(function () {
+	
+	$('[data-toggle="tooltip"]').tooltip({
+		  trigger: 'focus' 
+	});
+	  
 	$('#TravelBoard').fullCalendar({
 		header: {
 			left: 'prev,next today',
@@ -93,4 +98,6 @@ $(function () {
 			}
 		]
 	});
+	
+	//$(".fc-title").append("<i class='fa fa-motorcycle fa-sm'></i>");
 });

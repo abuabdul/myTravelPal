@@ -24,19 +24,8 @@
  * @site      
  *
  */
-.navbar-inverse {
-	background-color: #98758B;
-	border-color: #B9C8CD;
-}
 
-.navbar-inverse .navbar-brand {
-	color: #B9C8CD;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-	color: #B9C8CD;
-}
-
+/******************** Calendar Theme Override ********************/
 .fc-content {
 	background-color: #5AA7AA;
 }
@@ -52,17 +41,47 @@
     color: #444;
 }
 
+/******************** Bootstrap Theme Override ********************/
+.navbar-inverse {
+	background-color: #98758B;
+	border-color: #B9C8CD;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #B9C8CD;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #B9C8CD;
+}
+
+.btn-primary {
+    background: #5AA7AA;
+    color: #ffffff;
+    border-color: #5AA7AA;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #98758B;
+    border-color: #98758B;
+}
+
+.tooltip-inner {
+	max-width: 100%;
+	background-color: #BEB6BB;
+}
+
+.tooltip.top .tooltip-arrow {
+	border-top-color: #BEB6BB;
+}
+
+/******************** myTravelPal Theme ********************/
 body {
 	padding-top: 70px;
-	/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 	margin: 40px 10px;
 	padding: 0;
 	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 14px;
-}
-
-.fa-sm {
-	font-size: 15px;
 }
 
 .board-head {
@@ -72,6 +91,10 @@ body {
 #TravelBoard {
 	max-width: 900px;
 	margin: 0 auto;
+}
+
+.fa-sm {
+	font-size: 15px;
 }
 
 /* 

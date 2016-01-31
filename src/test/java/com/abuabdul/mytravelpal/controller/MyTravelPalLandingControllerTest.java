@@ -16,10 +16,43 @@
  */
 package com.abuabdul.mytravelpal.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.web.servlet.MockMvc;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 /**
  * @author abuabdul
  *
  */
 public class MyTravelPalLandingControllerTest {
+
+	@InjectMocks
+	private MyTravelPalLandingController landingController;
+
+	private MockMvc mockMvc;
+
+	@BeforeMethod
+	public void init() {
+		MockitoAnnotations.initMocks(this);
+		mockMvc = standaloneSetup(landingController).build();
+	}
+
+	@Test
+	public void testIndex() throws Exception {
+		mockMvc.perform(post("/")).andExpect(status().isOk()).andExpect(forwardedUrl("/index.jsp"));
+	}
+
+	@Test
+	public void testMyTravelPal() throws Exception {
+		mockMvc.perform(post("/travel/planBoard.go")).andExpect(status().isOk()).andExpect(view().name("myTravelPal"));
+	}
 
 }

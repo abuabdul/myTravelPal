@@ -17,6 +17,10 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/myTravelPalBoard.jsp" />
 	</definition>
 	
+	<definition name="travel/plan/form" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/myTravelPalPlan.jsp" />
+	</definition>
+	
 	
 	<!-- Error page views start -->
 	<definition name="generic/error" extends="base.definition">

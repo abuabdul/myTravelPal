@@ -19,7 +19,7 @@
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="#">Plan</a>
+                        <a href="<c:url value='/travel/plans.go'/>">Plan</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">

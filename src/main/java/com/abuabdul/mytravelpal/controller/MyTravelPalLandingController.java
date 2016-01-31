@@ -20,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
+
 /**
  * @author abuabdul
  *
@@ -36,6 +38,12 @@ public class MyTravelPalLandingController {
 	@RequestMapping(value = "/travel/planBoard.go")
 	public String myTravelPal(ModelMap model) {
 		return "myTravelPal";
+	}
+
+	@RequestMapping(value = "/travel/plans.go")
+	public String myTravelPalPlan(ModelMap model) {
+		model.addAttribute("myTravelPalPlan", new MyTravelPalPlan());
+		return "travel/plan/form";
 	}
 
 }
