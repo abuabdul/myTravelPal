@@ -16,7 +16,10 @@
  */
 package com.abuabdul.mytravelpal.data.service;
 
+import java.util.List;
+
 import com.abuabdul.mytravelpal.data.dao.MyTravelPalDAO;
+import com.abuabdul.mytravelpal.data.document.MyTravelPal;
 
 /**
  * @author abuabdul
@@ -28,6 +31,16 @@ public class MyTravelPalServiceImpl implements MyTravelPalService {
 
 	public MyTravelPalServiceImpl(MyTravelPalDAO myTravelPalDAO) {
 		this.myTravelPalDAO = myTravelPalDAO;
+	}
+
+	@Override
+	public void makeTravelPlans(MyTravelPal travels) {
+		myTravelPalDAO.saveTravel(travels);
+	}
+
+	@Override
+	public List<MyTravelPal> retrieveAllTravelPlans() {
+		return myTravelPalDAO.listAllTravelPlans();
 	}
 
 }

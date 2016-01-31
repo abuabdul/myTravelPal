@@ -16,7 +16,11 @@
  */
 package com.abuabdul.mytravelpal.data.dao;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.core.MongoTemplate;
+
+import com.abuabdul.mytravelpal.data.document.MyTravelPal;
 
 /**
  * @author abuabdul
@@ -28,6 +32,16 @@ public class MyTravelPalDAOImpl implements MyTravelPalDAO {
 
 	public MyTravelPalDAOImpl(MongoTemplate mongoTemplate) {
 		this.mongoTemplate = mongoTemplate;
+	}
+
+	@Override
+	public void saveTravel(MyTravelPal plan) {
+		mongoTemplate.save(plan);
+	}
+
+	@Override
+	public List<MyTravelPal> listAllTravelPlans() {
+		return mongoTemplate.findAll(MyTravelPal.class);
 	}
 
 }

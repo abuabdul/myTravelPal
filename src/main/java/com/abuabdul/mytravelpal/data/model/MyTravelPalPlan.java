@@ -30,6 +30,8 @@ public class MyTravelPalPlan {
 	private String travelMode;
 	private String travelType;
 	private String sideNote;
+	private String createdBy;
+	private String updatedBy;
 
 	/**
 	 * @return the startDate
@@ -150,4 +152,35 @@ public class MyTravelPalPlan {
 	public void setSideNote(String sideNote) {
 		this.sideNote = sideNote;
 	}
+
+	/**
+	 * @return the createdBy
+	 */
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	/**
+	 * @param createdBy
+	 *            the createdBy to set
+	 */
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	/**
+	 * @return the updatedBy
+	 */
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	/**
+	 * @param updatedBy
+	 *            the updatedBy to set
+	 */
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
 }

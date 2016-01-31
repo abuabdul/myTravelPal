@@ -16,10 +16,18 @@
  */
 package com.abuabdul.mytravelpal.data.service;
 
+import java.util.List;
+
+import com.abuabdul.mytravelpal.data.document.MyTravelPal;
+
 /**
  * @author abuabdul
  *
  */
 public interface MyTravelPalService {
+
+	void makeTravelPlans(MyTravelPal travels);
+
+	List<MyTravelPal> retrieveAllTravelPlans();
 
 }

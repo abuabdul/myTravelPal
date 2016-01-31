@@ -17,22 +17,36 @@
 package com.abuabdul.mytravelpal.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+import static org.springframework.web.servlet.DispatcherServlet.INPUT_FLASH_MAP_ATTRIBUTE;
+
+import java.util.Map;
 
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
+import com.abuabdul.mytravelpal.data.service.MyTravelPalService;
+import com.beust.jcommander.internal.Maps;
 
 /**
  * @author abuabdul
  *
  */
 public class MyTravelPalLandingControllerTest {
+
+	@Mock
+	private MyTravelPalService myTravelPalService;
 
 	@InjectMocks
 	private MyTravelPalLandingController landingController;
@@ -53,6 +67,23 @@ public class MyTravelPalLandingControllerTest {
 	@Test
 	public void testMyTravelPal() throws Exception {
 		mockMvc.perform(post("/travel/planBoard.go")).andExpect(status().isOk()).andExpect(view().name("myTravelPal"));
+	}
+
+	@Test
+	public void myTravelPalPlan() throws Exception {
+		Map<String, Object> inputFlashMap = Maps.newHashMap();
+		inputFlashMap.put("travelPlanned", Boolean.TRUE);
+		mockMvc.perform(post("/travel/plans.go").requestAttr(INPUT_FLASH_MAP_ATTRIBUTE, inputFlashMap))
+				.andExpect(status().isOk()).andExpect(model().attributeExists("myTravelPalPlan", "travelPlanned"))
+				.andExpect(view().name("travel/plan/form"));
+
+	}
+
+	@Test
+	public void myTravelPalMakePlan() throws Exception {
+		mockMvc.perform(post("/secure/travel/makePlans.go").sessionAttr("myTravelPalPlan", new MyTravelPalPlan()))
+				.andExpect(status().isFound()).andExpect(flash().attribute("travelPlanned", true))
+				.andExpect(redirectedUrl("/travel/plans.go"));
 	}
 
 }

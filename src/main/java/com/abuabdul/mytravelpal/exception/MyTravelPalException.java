@@ -14,20 +14,36 @@
  * limitations under the License.
  * 
  */
-package com.abuabdul.mytravelpal.data.dao;
-
-import java.util.List;
-
-import com.abuabdul.mytravelpal.data.document.MyTravelPal;
+package com.abuabdul.mytravelpal.exception;
 
 /**
  * @author abuabdul
  *
  */
-public interface MyTravelPalDAO {
+public class MyTravelPalException extends Exception {
 
-	void saveTravel(MyTravelPal plan);
+	/**
+	 * Default Serial ID
+	 */
+	private static final long serialVersionUID = 345456L;
 
-	List<MyTravelPal> listAllTravelPlans();
+	public MyTravelPalException() {
 
+	}
+
+	public MyTravelPalException(String message) {
+		super(message);
+	}
+
+	public MyTravelPalException(Throwable cause) {
+		super(cause);
+	}
+
+	public MyTravelPalException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public MyTravelPalException(String message, Error error) {
+		super(message, error);
+	}
 }
