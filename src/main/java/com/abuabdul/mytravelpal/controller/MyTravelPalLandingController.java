@@ -17,6 +17,8 @@
 package com.abuabdul.mytravelpal.controller;
 
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPlanToTravelPal;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelModes;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypes;
 
 import java.util.Map;
 
@@ -66,6 +68,8 @@ public class MyTravelPalLandingController {
 		if (inputFlashMap != null) {
 			model.addAttribute("travelPlanned", inputFlashMap.get("travelPlanned"));
 		}
+		model.addAttribute("travelModes", travelModes);
+		model.addAttribute("travelTypes", travelTypes);
 		model.addAttribute("myTravelPalPlan", new MyTravelPalPlan());
 		return "travel/plan/form";
 	}

@@ -16,7 +16,9 @@
  */
 package com.abuabdul.mytravelpal.util;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -24,6 +26,7 @@ import org.joda.time.DateTimeZone;
 import com.abuabdul.mytravelpal.data.document.MyTravelPal;
 import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
 import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 
 /**
  * @author abuabdul
@@ -35,11 +38,18 @@ public class MyTravelPalFunc {
 		@Override
 		public MyTravelPal apply(MyTravelPalPlan plan) {
 			MyTravelPal myTravelPal = new MyTravelPal();
+			myTravelPal.setTravelPlanDesc(plan.getTravelPlanDesc());
+			myTravelPal.setStartDate(plan.getStartDate());
+			myTravelPal.setStartTime(plan.getStartTime());
+			myTravelPal.setEndDate(plan.getEndDate());
+			myTravelPal.setEndTime(plan.getEndTime());
+			myTravelPal.setTravelMode(plan.getTravelMode());
+			myTravelPal.setTravelType(plan.getTravelType());
+			myTravelPal.setSideNote(plan.getSideNote());
 			myTravelPal.setCreatedBy(plan.getCreatedBy());
 			myTravelPal.setCreatedDate(String.valueOf(getUTCDateTime().getTime()));
 			myTravelPal.setUpdatedBy(plan.getUpdatedBy());
 			myTravelPal.setUpdatedDate(String.valueOf(getUTCDateTime().getTime()));
-			// TODO fill all the plans
 			return myTravelPal;
 		}
 	};
@@ -48,13 +58,37 @@ public class MyTravelPalFunc {
 		@Override
 		public MyTravelPalPlan apply(MyTravelPal plan) {
 			MyTravelPalPlan travel = new MyTravelPalPlan();
-			// TODO fill all the plans
+			travel.setTravelPlanDesc(plan.getTravelPlanDesc());
+			travel.setStartDate(plan.getStartDate());
+			travel.setStartTime(plan.getStartTime());
+			travel.setEndDate(plan.getEndDate());
+			travel.setEndTime(plan.getEndTime());
+			travel.setTravelMode(plan.getTravelMode());
+			travel.setTravelType(plan.getTravelType());
+			travel.setSideNote(plan.getSideNote());
+			travel.setCreatedBy(plan.getCreatedBy());
+			travel.setUpdatedBy(plan.getUpdatedBy());
 			return travel;
 		}
 	};
 
-	public static Date getUTCDateTime() {
+	public static final Date getUTCDateTime() {
 		return new DateTime(DateTimeZone.UTC).toDate();
 	}
 
+	public static List<String> travelModes = Lists.transform(Arrays.asList(MyTravelPalMode.values()),
+			new Function<MyTravelPalMode, String>() {
+				@Override
+				public String apply(MyTravelPalMode mode) {
+					return mode.toString();
+				}
+			});
+
+	public static List<String> travelTypes = Lists.transform(Arrays.asList(MyTravelPalType.values()),
+			new Function<MyTravelPalType, String>() {
+				@Override
+				public String apply(MyTravelPalType type) {
+					return type.toString();
+				}
+			});
 }

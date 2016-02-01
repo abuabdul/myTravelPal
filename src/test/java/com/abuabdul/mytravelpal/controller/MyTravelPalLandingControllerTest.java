@@ -74,7 +74,8 @@ public class MyTravelPalLandingControllerTest {
 		Map<String, Object> inputFlashMap = Maps.newHashMap();
 		inputFlashMap.put("travelPlanned", Boolean.TRUE);
 		mockMvc.perform(post("/travel/plans.go").requestAttr(INPUT_FLASH_MAP_ATTRIBUTE, inputFlashMap))
-				.andExpect(status().isOk()).andExpect(model().attributeExists("myTravelPalPlan", "travelPlanned"))
+				.andExpect(status().isOk())
+				.andExpect(model().attributeExists("myTravelPalPlan", "travelPlanned", "travelModes", "travelTypes"))
 				.andExpect(view().name("travel/plan/form"));
 
 	}
