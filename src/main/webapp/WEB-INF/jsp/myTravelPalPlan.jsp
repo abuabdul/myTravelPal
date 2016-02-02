@@ -31,7 +31,7 @@
 	  					   <div class="form-group">
 		  					   <div class="col-sm-3"></div>
 							   <div class="col-sm-6">
-								   <form:input type="text" class="form-control" path="startDate" placeholder="Start Date" 
+								   <form:input type="text" class="form-control travel-start" path="startDate" placeholder="Start Date" 
 								               data-toggle="tooltip" data-placement="top"
 								               title="When does it start?"/>
 							    </div>
@@ -49,7 +49,7 @@
 						   <div class="form-group">
 							   <div class="col-sm-3"></div>
 							   <div class="col-sm-6">
-							      <form:input type="text" class="form-control" path="endDate" placeholder="End Date"
+							      <form:input type="text" class="form-control" path="endDate" id="TravelDatePicker-End" placeholder="End Date"
 							      			  data-toggle="tooltip" data-placement="top"
 								              title="Does it end? When?"/>							      
 							   </div>

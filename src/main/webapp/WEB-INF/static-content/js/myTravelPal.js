@@ -25,12 +25,20 @@
  *
  */
 
-
 $(function () {
 	
 	$('[data-toggle="tooltip"]').tooltip({
 		  trigger: 'focus' 
 	});
+	
+    $('.travel-start').datepicker({
+        format: "mm/dd/yyyy",
+        weekStart: 0,
+        todayBtn: "linked",
+        multidate: false,
+        autoclose: true,
+        todayHighlight: true
+    });
 	  
 	$('#TravelBoard').fullCalendar({
 		header: {

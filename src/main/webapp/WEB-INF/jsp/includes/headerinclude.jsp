@@ -6,6 +6,10 @@
 <!-- For Bootstrap Validator -->
 <link href="<c:url value='/resources/css/bootstrapValidator.min.css'/>" rel="stylesheet"/>
 
+<!-- For Bootstrap Datepicker -->
+<link href="<c:url value='/resources/css/bootstrap-datepicker.css'/>" rel="stylesheet"/>
+<link href="<c:url value='/resources/css/prettify.css'/>" rel="stylesheet"/>
+
 <!--  Font Awesome  -->
 <link href="<c:url value='/resources/css/font-awesome.min.css'/>" rel="stylesheet"/>
 
