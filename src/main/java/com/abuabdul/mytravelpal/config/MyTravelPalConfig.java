@@ -16,6 +16,7 @@
  */
 package com.abuabdul.mytravelpal.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,6 +37,7 @@ public class MyTravelPalConfig {
 
 	private static final String APPCONFIG_FILE_NAME = "Appconfig.properties";
 
+	@Autowired
 	private MongoTemplate mongoTemplate;
 
 	@Bean
