@@ -22,7 +22,8 @@ package com.abuabdul.mytravelpal.util;
  */
 public enum MyTravelPalMode {
 
-	MOTOR_BIKE("Motor Bike"), BI_CYCLE("Bi Cycle"), CAR("Car"), BUS("Bus"), TRAIN("Train"), FLIGHT("Flight");
+	MOTOR_BIKE("Motor Bike"), BI_CYCLE("Bi Cycle"), CAR("Car"), BUS("Bus"), TRAIN("Train"), FLIGHT("Flight"), SHIP(
+			"Ship");
 
 	private String mode;
 
