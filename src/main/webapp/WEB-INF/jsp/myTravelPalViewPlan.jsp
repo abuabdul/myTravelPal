@@ -29,7 +29,7 @@
 			</c:if>
 			<c:if test="${not empty allTravelPlans}">
 				<div class="table-responsive-travel">
-					<table id="travelPlans" class="table table-hover table-bordered">
+					<table id="TravelPlans" class="table table-hover table-bordered">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -42,18 +42,6 @@
 								<th></th>
 							</tr>
 						</thead>
-						<tfoot>
-							<tr>
-								<th>#</th>
-								<th>Travel Plan</th>
-								<th>Start</th>
-								<th>End</th>
-								<th>Mode</th>
-								<th>Type</th>
-								<th>Note</th>
-								<th></th>
-							</tr>
-						</tfoot>
 						<tbody>
 							<c:forEach items="${allTravelPlans}" var="plan">
 								<tr>

@@ -17,4 +17,8 @@
 <!-- For Full Calendar -->
 <script src="<c:url value='/resources/js/fullcalendar.min.js'/>"></script>
 
+<!-- Bootstrap Datatable plugin -->
+<script src="<c:url value='/resources/js/jquery.dataTables.min.js'/>"></script>
+<script src="<c:url value='/resources/js/dataTables.bootstrap.min.js'/>"></script>
+
 <script src="<c:url value='/resources/js/myTravelPal.js'/>"></script>

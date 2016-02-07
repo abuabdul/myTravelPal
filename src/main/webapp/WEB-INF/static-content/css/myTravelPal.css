@@ -76,6 +76,19 @@
 	border-top-color: #BEB6BB;
 }
 
+table {
+	color: #5AA7AA;
+}
+
+.dataTables_length, .dataTables_info {
+	color: #98758B;
+	float: left !important;
+}
+
+.dataTables_filter, .dataTables_paginate {
+	color: #98758B;
+}
+
 @media screen and (max-width:767px) {
 	.table-responsive-travel {
 		width: 100%;

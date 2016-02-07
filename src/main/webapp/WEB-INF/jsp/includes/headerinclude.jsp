@@ -13,6 +13,9 @@
 <!--  Font Awesome  -->
 <link href="<c:url value='/resources/css/font-awesome.min.css'/>" rel="stylesheet"/>
 
+<!-- Include Bootstrap Datatable plugin -->
+<link rel="stylesheet" href="<c:url value='/resources/css/dataTables.bootstrap.min.css'/>" />
+
 <!-- Full Calendar -->
 <link href="<c:url value='/resources/css/fullcalendar.min.css'/>" rel="stylesheet"/>
 <link href="<c:url value='/resources/css/fullcalendar.print.css'/>" rel="stylesheet" media="print"/>
