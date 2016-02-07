@@ -16,6 +16,7 @@
  */
 package com.abuabdul.mytravelpal.util;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -46,10 +47,10 @@ public class MyTravelPalFunc {
 			myTravelPal.setTravelMode(plan.getTravelMode());
 			myTravelPal.setTravelType(plan.getTravelType());
 			myTravelPal.setSideNote(plan.getSideNote());
-			myTravelPal.setCreatedBy(plan.getCreatedBy());
-			myTravelPal.setCreatedDate(String.valueOf(getUTCDateTime().getTime()));
-			myTravelPal.setUpdatedBy(plan.getUpdatedBy());
-			myTravelPal.setUpdatedDate(String.valueOf(getUTCDateTime().getTime()));
+			myTravelPal.setCreatedBy(getUser());
+			myTravelPal.setCreatedDate(getFormattedUTCDateTime());
+			myTravelPal.setUpdatedBy(getUser());
+			myTravelPal.setUpdatedDate(getFormattedUTCDateTime());
 			return myTravelPal;
 		}
 	};
@@ -58,6 +59,7 @@ public class MyTravelPalFunc {
 		@Override
 		public MyTravelPalPlan apply(MyTravelPal plan) {
 			MyTravelPalPlan travel = new MyTravelPalPlan();
+			travel.setId(plan.getId());
 			travel.setTravelPlanDesc(plan.getTravelPlanDesc());
 			travel.setStartDate(plan.getStartDate());
 			travel.setStartTime(plan.getStartTime());
@@ -74,6 +76,15 @@ public class MyTravelPalFunc {
 
 	public static final Date getUTCDateTime() {
 		return new DateTime(DateTimeZone.UTC).toDate();
+	}
+
+	public static final String getUser() {
+		return "abuabdul";
+	}
+
+	public static final String getFormattedUTCDateTime() {
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		return formatter.format(getUTCDateTime());
 	}
 
 	public static List<String> travelModes = Lists.transform(Arrays.asList(MyTravelPalMode.values()),

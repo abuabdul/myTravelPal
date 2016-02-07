@@ -22,6 +22,7 @@ package com.abuabdul.mytravelpal.data.model;
  */
 public class MyTravelPalPlan {
 
+	private String id;
 	private String startDate;
 	private String startTime;
 	private String endDate;
@@ -32,6 +33,21 @@ public class MyTravelPalPlan {
 	private String sideNote;
 	private String createdBy;
 	private String updatedBy;
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the startDate

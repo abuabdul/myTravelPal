@@ -16,9 +16,15 @@
  */
 package com.abuabdul.mytravelpal.data.dao;
 
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.getFormattedUTCDateTime;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.getUser;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+
 import java.util.List;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 
 import com.abuabdul.mytravelpal.data.document.MyTravelPal;
 
@@ -44,4 +50,34 @@ public class MyTravelPalDAOImpl implements MyTravelPalDAO {
 		return mongoTemplate.findAll(MyTravelPal.class);
 	}
 
+	@Override
+	public void updateTravelPlan(String id, String key, Object val) {
+		mongoTemplate.updateFirst(query(id), update(key, val), MyTravelPal.class);
+	}
+
+	@Override
+	public void removeTravelPlan(MyTravelPal plan) {
+		mongoTemplate.remove(plan);
+	}
+
+	@Override
+	public long countTravelPlans() {
+		return mongoTemplate.count(query(), MyTravelPal.class);
+	}
+
+	protected Query query(String id) {
+		return new Query(where("id").is(id));
+	}
+
+	protected Query query() {
+		return new Query();
+	}
+
+	protected Update update(String key, Object val) {
+		Update update = new Update();
+		update.set(key, val);
+		update.set("updatedDate", getFormattedUTCDateTime());
+		update.set("updatedBy", getUser());
+		return update;
+	}
 }

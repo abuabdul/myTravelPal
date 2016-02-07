@@ -30,4 +30,10 @@ public interface MyTravelPalDAO {
 
 	List<MyTravelPal> listAllTravelPlans();
 
+	public void updateTravelPlan(String id, String key, Object val);
+
+	public void removeTravelPlan(MyTravelPal plan);
+
+	public long countTravelPlans();
+
 }

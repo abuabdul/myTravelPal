@@ -85,8 +85,22 @@ table {
 	float: left !important;
 }
 
-.dataTables_filter, .dataTables_paginate {
+.dataTables_filter {
 	color: #98758B;
+}
+
+.pagination > li > a {
+	color: #98758B;
+}
+
+.pagination > .active > a {
+	background-color: #98758B;
+	border-color: #98758B;
+}
+
+.pagination > .active > a:hover {
+	background-color: #5AA7AA;
+	border-color: #5AA7AA;
 }
 
 @media screen and (max-width:767px) {

@@ -31,7 +31,7 @@ import com.abuabdul.mytravelpal.data.document.MyTravelPal;
  * @author abuabdul
  *
  */
-public class MyTravelPalServiceImplTest {
+public class MyTravelPalServiceTest {
 
 	@Mock
 	private MyTravelPalDAO myTravelPalDAO;
@@ -55,5 +55,24 @@ public class MyTravelPalServiceImplTest {
 	public void testRetrieveAllTravelPlans() throws Exception {
 		myTravelPalService.retrieveAllTravelPlans();
 		verify(myTravelPalDAO).listAllTravelPlans();
+	}
+
+	@Test
+	public void testRemoveTravelPlan() {
+		MyTravelPal plan = new MyTravelPal();
+		myTravelPalService.removeTravelPlan(plan);
+		verify(myTravelPalDAO).removeTravelPlan(plan);
+	}
+
+	@Test
+	public void testUpdateTravelPlan() {
+		myTravelPalService.updateTravelPlan("pk", "somekey", "somevalue");
+		verify(myTravelPalDAO).updateTravelPlan("pk", "somekey", "somevalue");
+	}
+
+	@Test
+	public void testCountTravelPlans() throws Exception {
+		myTravelPalService.countTravelPlans();
+		verify(myTravelPalDAO).countTravelPlans();
 	}
 }

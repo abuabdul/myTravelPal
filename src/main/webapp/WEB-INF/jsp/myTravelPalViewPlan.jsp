@@ -1,30 +1,15 @@
 <%@ include file="/WEB-INF/jsp/includes/siteTags.jsp"%>
-<%-- TravelPlan Board --%>
+<%-- TravelPlan View --%>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 text-center">
 			<h1 class="board-head">Travel Plans</h1>
 			<p class="lead sub-title">Modify or Remove your travel plans.</p>
-			<c:url var="travelPlanUrl" value="/secure/travel/makePlans.go" />
-			<div class="form-group">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6">
-					<c:if test="${travelRemoved}">
-						<div class="alert alert-success">
-							<a href="#" class="close" data-dismiss="alert">&times;</a> Your
-							Selected Travel Plan(s) Removed!!!
-						</div>
-					</c:if>
-				</div>
-				<div class="col-sm-3"></div>
-			</div>
 			<c:if test="${empty allTravelPlans}">
-				<div class="table-responsive padding-3px">
-					<div class="page-header">
-						<h2>
-							<small>No Travel Plans Found</small>
-						</h2>
-					</div>
+				<div>
+					<h2>
+						<small>No Travel Plans Found</small>
+					</h2>
 				</div>
 			</c:if>
 			<c:if test="${not empty allTravelPlans}">
@@ -52,7 +37,13 @@
 									<td>${plan.travelMode}</td>
 									<td>${plan.travelType}</td>
 									<td>${plan.sideNote}</td>
-									<td><span class="glyhpicon glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyhpicon glyphicon glyphicon-trash"></span></td>
+									<td>
+									   <a href=""><span	class="glyhpicon glyphicon glyphicon-edit"></span></a>
+										&nbsp;&nbsp;&nbsp;&nbsp; 
+									   <a href="<c:url value='/secure/travel/${plan.id}/removePlans.go'/>">
+											<span class="glyhpicon glyphicon glyphicon-trash"></span>
+									   </a>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

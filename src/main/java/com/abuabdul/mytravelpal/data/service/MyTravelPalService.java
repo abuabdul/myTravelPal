@@ -30,4 +30,9 @@ public interface MyTravelPalService {
 
 	List<MyTravelPal> retrieveAllTravelPlans();
 
+	void removeTravelPlan(MyTravelPal plan);
+
+	void updateTravelPlan(String id, String key, String value);
+
+	Long countTravelPlans();
 }

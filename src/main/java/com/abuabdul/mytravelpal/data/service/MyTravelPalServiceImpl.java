@@ -43,4 +43,18 @@ public class MyTravelPalServiceImpl implements MyTravelPalService {
 		return myTravelPalDAO.listAllTravelPlans();
 	}
 
+	@Override
+	public void removeTravelPlan(MyTravelPal plan) {
+		myTravelPalDAO.removeTravelPlan(plan);
+	}
+
+	@Override
+	public void updateTravelPlan(String id, String key, String value) {
+		myTravelPalDAO.updateTravelPlan(id, key, value);
+	}
+
+	@Override
+	public Long countTravelPlans() {
+		return myTravelPalDAO.countTravelPlans();
+	}
 }

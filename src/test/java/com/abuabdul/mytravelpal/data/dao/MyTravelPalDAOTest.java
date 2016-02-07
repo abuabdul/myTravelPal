@@ -16,12 +16,15 @@
  */
 package com.abuabdul.mytravelpal.data.dao;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -57,4 +60,22 @@ public class MyTravelPalDAOTest {
 		verify(mongoTemplate).findAll(MyTravelPal.class);
 	}
 
+	@Test
+	public void testUpdateTravelPlan() {
+		myTravelPalDAO.updateTravelPlan("pk", "name", "someValue");
+		verify(mongoTemplate).updateFirst(any(Query.class), any(Update.class), any(Class.class));
+	}
+
+	@Test
+	public void testRemoveTravelPlan() {
+		MyTravelPal plan = new MyTravelPal();
+		myTravelPalDAO.removeTravelPlan(plan);
+		verify(mongoTemplate).remove(plan);
+	}
+
+	@Test
+	public void testCountTravelPlans() {
+		myTravelPalDAO.countTravelPlans();
+		verify(mongoTemplate).count(new Query(), MyTravelPal.class);
+	}
 }

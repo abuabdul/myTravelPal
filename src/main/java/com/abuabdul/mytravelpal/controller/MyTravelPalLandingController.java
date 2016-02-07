@@ -33,6 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -88,12 +89,26 @@ public class MyTravelPalLandingController {
 	}
 
 	@RequestMapping(value = "/secure/travel/viewPlans.go")
-	public String myTravelPalViewPlan(ModelMap model) {
+	public String myTravelPalViewPlan(ModelMap model, HttpServletRequest request) {
 		log.debug("Entering myTravelPalViewPlan() in " + this.getClass().getName());
+		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+		if (inputFlashMap != null) {
+			model.addAttribute("travelPlanCount", inputFlashMap.get("travelPlanCount"));
+		}
 		List<MyTravelPalPlan> allTravelPlans = transform(myTravelPalService.retrieveAllTravelPlans(),
 				fromTravelPalToTravelPlan);
 		model.addAttribute("allTravelPlans", allTravelPlans);
 		return "travel/plan/view/modify";
+	}
+
+	@RequestMapping(value = "/secure/travel/{id}/removePlans.go")
+	public String myTravelPalRemovePlan(ModelMap model, @PathVariable String id, RedirectAttributes redirectAttrs) {
+		log.debug("Entering myTravelPalRemovePlan() in " + this.getClass().getName());
+		MyTravelPal plan = new MyTravelPal();
+		plan.setId(id);
+		myTravelPalService.removeTravelPlan(plan);
+		redirectAttrs.addFlashAttribute("travelPlanCount", myTravelPalService.countTravelPlans());
+		return "redirect:/secure/travel/viewPlans.go";
 	}
 
 }
