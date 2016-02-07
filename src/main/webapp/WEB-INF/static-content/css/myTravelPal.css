@@ -24,6 +24,42 @@
  * @site      
  *
  */
+/******************** Bootstrap Editable Theme Override ********************/
+a.editable-empty {
+	color: #5AA7AA;
+}
+
+a.editable-empty:hover {
+   color: #337AB7;	
+}
+
+.has-error .help-block {
+	color: #337AB7;
+}
+
+/******************** Bootstrap Datatables Theme Override ********************/
+.dataTables_length, .dataTables_info {
+	color: #98758B;
+	float: left !important;
+}
+
+.dataTables_filter {
+	color: #98758B;
+}
+
+.pagination>li>a {
+	color: #98758B;
+}
+
+.pagination>.active>a {
+	background-color: #98758B;
+	border-color: #98758B;
+}
+
+.pagination>.active>a:hover {
+	background-color: #5AA7AA;
+	border-color: #5AA7AA;
+}
 
 /******************** Calendar Theme Override ********************/
 .fc-content {
@@ -80,38 +116,6 @@ table {
 	color: #5AA7AA;
 }
 
-.dataTables_length, .dataTables_info {
-	color: #98758B;
-	float: left !important;
-}
-
-.dataTables_filter {
-	color: #98758B;
-}
-
-.pagination > li > a {
-	color: #98758B;
-}
-
-.pagination > .active > a {
-	background-color: #98758B;
-	border-color: #98758B;
-}
-
-.pagination > .active > a:hover {
-	background-color: #5AA7AA;
-	border-color: #5AA7AA;
-}
-
-@media screen and (max-width:767px) {
-	.table-responsive-travel {
-		width: 100%;
-		margin-bottom: 15px;
-		overflow-y: hidden;
-		-ms-overflow-style: -ms-autohiding-scrollbar;
-		border: 1px solid #ddd
-	}
-}
 /******************** myTravelPal Theme ********************/
 body {
 	padding-top: 70px;
@@ -137,6 +141,15 @@ body {
 .fa-sm {
 	font-size: 15px;
 }
+
+@media screen and (max-width:767px) {
+	.table-responsive-travel {
+		width: 100%;
+		margin-bottom: 15px;
+		overflow-y: hidden;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		border: 1px solid #ddd
+	}
 }
 
 /* 

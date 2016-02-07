@@ -17,6 +17,7 @@
 package com.abuabdul.mytravelpal.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -28,9 +29,11 @@ import static org.springframework.web.servlet.DispatcherServlet.INPUT_FLASH_MAP_
 
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -100,5 +103,15 @@ public class MyTravelPalLandingControllerTest {
 		mockMvc.perform(post("/secure/travel/12123123/removePlans.go")).andExpect(status().isFound())
 				.andExpect(flash().attributeExists("travelPlanCount"))
 				.andExpect(redirectedUrl("/secure/travel/viewPlans.go"));
+	}
+
+	@Test
+	public void testMyTravelPalUpdatePlan() throws Exception {
+		JSONObject json = new JSONObject();
+		json.put("status", "success");
+		mockMvc.perform(post("/secure/travel/updatePlans.go").param("name", "any_name").param("pk", "any_id")
+				.param("value", "any_value")).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(json.toString()))
+				.andReturn();
 	}
 }

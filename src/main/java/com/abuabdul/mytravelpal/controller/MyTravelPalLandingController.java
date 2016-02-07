@@ -18,23 +18,29 @@ package com.abuabdul.mytravelpal.controller;
 
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToTravelPlan;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPlanToTravelPal;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.isMandatoryField;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelModes;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypes;
 import static com.google.common.collect.Lists.transform;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -111,4 +117,25 @@ public class MyTravelPalLandingController {
 		return "redirect:/secure/travel/viewPlans.go";
 	}
 
+	@RequestMapping(value = "/secure/travel/updatePlans.go", produces = "application/json")
+	@ResponseBody
+	public String myTravelPalUpdatePlan(HttpServletResponse response, @RequestParam String pk,
+			@RequestParam String name, @RequestParam String value) {
+		log.debug("Entering myTravelPalUpdatePlan() in " + this.getClass().getName());
+		response.setStatus(HttpServletResponse.SC_OK);
+		JSONObject json = new JSONObject();
+		if (isEmpty(pk) || isEmpty(name)) {
+			json.put("status", "error");
+			json.put("msg", "cannot update");
+			return json.toString();
+		}
+		if (isMandatoryField(name) && isEmpty(value)) {
+			json.put("status", "error");
+			json.put("msg", "cannot be empty");
+			return json.toString();
+		}
+		myTravelPalService.updateTravelPlan(pk, name, value);
+		json.put("status", "success");
+		return json.toString();
+	}
 }

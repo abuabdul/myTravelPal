@@ -31,15 +31,13 @@
 							<c:forEach items="${allTravelPlans}" var="plan">
 								<tr>
 									<td></td>
-									<td>${plan.travelPlanDesc}</td>
+									<td><a href="#" class="editable" id="travelPlanDesc" data-pk="${plan.id}">${plan.travelPlanDesc}</a></td>
 									<td>${plan.startDate}&nbsp;${plan.startTime}</td>
 									<td>${plan.endDate}&nbsp;${plan.endTime}</td>
 									<td>${plan.travelMode}</td>
 									<td>${plan.travelType}</td>
 									<td>${plan.sideNote}</td>
 									<td>
-									   <a href=""><span	class="glyhpicon glyphicon glyphicon-edit"></span></a>
-										&nbsp;&nbsp;&nbsp;&nbsp; 
 									   <a href="<c:url value='/secure/travel/${plan.id}/removePlans.go'/>">
 											<span class="glyhpicon glyphicon glyphicon-trash"></span>
 									   </a>

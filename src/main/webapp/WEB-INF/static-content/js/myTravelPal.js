@@ -25,17 +25,21 @@
  *
  */
 
+//Inline mode
+$.fn.editable.defaults.mode = 'inline';
 $(function() {
 
+	/* Bootstrap tooltip */
 	$('[data-toggle="tooltip"]').tooltip({
 		trigger : 'focus'
 	});
 
+	/* Bootstrap datatable */
 	var travelPlans = $('#TravelPlans').DataTable({
 		"columnDefs" : [ {
 			"searchable" : false,
 			"orderable" : false,
-			"targets" : [0,7]
+			"targets" : [ 0, 7 ]
 		} ],
 		"order" : [ [ 1, 'asc' ] ]
 	});
@@ -49,6 +53,17 @@ $(function() {
 		});
 	}).draw();
 
+	var baseURL = '';
+	/* Bootstrap editable */
+	$('.editable').editable({
+		type : 'text',
+		url : baseURL + 'http://localhost:8697/myTravelPal/secure/travel/updatePlans.go',
+		success : function(response, newValue) {
+			if (response.status == 'error')
+				return response.msg;
+		}
+	});
+
 	$('.travel-start').datepicker({
 		format : "mm/dd/yyyy",
 		weekStart : 0,
@@ -58,6 +73,7 @@ $(function() {
 		todayHighlight : true
 	});
 
+	/* Full Calendar Plugin */
 	$('#TravelBoard').fullCalendar({
 		header : {
 			left : 'prev,next today',

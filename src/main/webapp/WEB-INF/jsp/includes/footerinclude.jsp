@@ -21,4 +21,7 @@
 <script src="<c:url value='/resources/js/jquery.dataTables.min.js'/>"></script>
 <script src="<c:url value='/resources/js/dataTables.bootstrap.min.js'/>"></script>
 
+<!-- bootstrap editable -->
+<script src="<c:url value='/resources/js/bootstrap-editable.min.js'/>"></script>
+
 <script src="<c:url value='/resources/js/myTravelPal.js'/>"></script>

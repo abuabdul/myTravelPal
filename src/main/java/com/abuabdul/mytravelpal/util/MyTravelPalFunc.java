@@ -16,6 +16,10 @@
  */
 package com.abuabdul.mytravelpal.util;
 
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -27,6 +31,8 @@ import org.joda.time.DateTimeZone;
 import com.abuabdul.mytravelpal.data.document.MyTravelPal;
 import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 /**
@@ -74,19 +80,6 @@ public class MyTravelPalFunc {
 		}
 	};
 
-	public static final Date getUTCDateTime() {
-		return new DateTime(DateTimeZone.UTC).toDate();
-	}
-
-	public static final String getUser() {
-		return "abuabdul";
-	}
-
-	public static final String getFormattedUTCDateTime() {
-		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-		return formatter.format(getUTCDateTime());
-	}
-
 	public static List<String> travelModes = Lists.transform(Arrays.asList(MyTravelPalMode.values()),
 			new Function<MyTravelPalMode, String>() {
 				@Override
@@ -102,4 +95,38 @@ public class MyTravelPalFunc {
 					return type.toString();
 				}
 			});
+
+	public static final Date getUTCDateTime() {
+		return new DateTime(DateTimeZone.UTC).toDate();
+	}
+
+	public static final String getFormattedUTCDateTime() {
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		return formatter.format(getUTCDateTime());
+	}
+
+	public static final String getUser() {
+		return "abuabdul";
+	}
+
+	public static final Iterable<Field> privateFields = Iterables.filter(privateFieldsOf(), new Predicate<Field>() {
+		@Override
+		public boolean apply(Field field) {
+			return Modifier.isPrivate(field.getModifiers());
+		}
+	});
+
+	public static final List<Field> privateFieldsOf() {
+		Field[] declaredFields = MyTravelPalPlan.class.getDeclaredFields();
+		return Arrays.asList(declaredFields);
+	}
+
+	public static final boolean isMandatoryField(String name) {
+		System.out.println(privateFields.toString());
+		if (isNotEmpty(name)) {
+			// TODO privateFields
+			return name.equalsIgnoreCase("aboutNote") ? true : name.equalsIgnoreCase("noteMsg") ? true : false;
+		}
+		return false;
+	}
 }
