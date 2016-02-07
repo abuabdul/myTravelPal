@@ -30,34 +30,26 @@
 						   </div>
 	  					   <div class="form-group">
 		  					   <div class="col-sm-3"></div>
-							   <div class="col-sm-6">
+							   <div class="col-sm-3">
 								   <form:input type="text" class="form-control travel-start" path="startDate" placeholder="Start Date" 
 								               data-toggle="tooltip" data-placement="top"
 								               title="When does it start?"/>
 							    </div>
-								<div class="col-sm-3"></div>
-						   </div>
-						   <div class="form-group">
-							  <div class="col-sm-3"></div>
-							  <div class="col-sm-6">
+							    <div class="col-sm-3">
 							      <form:input type="text" class="form-control" path="startTime" placeholder="Start Time"
 							      			  data-toggle="tooltip" data-placement="top"
 								              title="What time?"/>
-							  </div>
-							  <div class="col-sm-3"></div>
+							    </div>
+								<div class="col-sm-3"></div>
 						   </div>
 						   <div class="form-group">
 							   <div class="col-sm-3"></div>
-							   <div class="col-sm-6">
+							   <div class="col-sm-3">
 							      <form:input type="text" class="form-control" path="endDate" id="TravelDatePicker-End" placeholder="End Date"
 							      			  data-toggle="tooltip" data-placement="top"
 								              title="Does it end? When?"/>							      
 							   </div>
-							   <div class="col-sm-3"></div>
-						   </div>
-						   <div class="form-group">
-							   <div class="col-sm-3"></div>
-							   <div class="col-sm-6">
+							   <div class="col-sm-3">
 							      <form:input type="text" class="form-control" path="endTime" placeholder="End Time"
    							      			  data-toggle="tooltip" data-placement="top"
 								              title="What time?"/>
@@ -66,7 +58,7 @@
 						   </div>
 						   <div class="form-group">
 							   <div class="col-sm-3"></div>
-							   <div class="col-sm-6">
+							   <div class="col-sm-4">
 							      <form:select class="form-control" path="travelMode"
 							      			  data-toggle="tooltip" data-placement="top"
 								              title="You can choose the mode of travel you want to make.">
@@ -74,11 +66,7 @@
 	                                          <form:options items="${travelModes}"></form:options>
 	                              </form:select>            
 							   </div>
-							   <div class="col-sm-3"></div>
-						   </div>
-						   <div class="form-group">
-							   <div class="col-sm-3"></div>
-							   <div class="col-sm-6">
+							   <div class="col-sm-2">
 							      <form:select class="form-control" path="travelType"
 							      			  data-toggle="tooltip" data-placement="top"
 								              title="Do you want to take solo trip/family? Choose travel type here.">
@@ -103,6 +91,8 @@
 							       <button type="button" id="resetButton" class="btn btn-sm btn-default">Clear</button>
 							       &nbsp;
 							       <button type="submit" class="btn btn-sm btn-primary">Plan</button>
+							       &nbsp;
+							       <a role="button" class="btn btn-sm btn-primary" href="<c:url value='/secure/travel/viewPlans.go'/>">View / Modify Plans</a>
 							   </div>
 							   <div class="col-sm-3"></div>
 						   </div>

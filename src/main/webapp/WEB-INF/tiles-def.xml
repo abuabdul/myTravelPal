@@ -21,6 +21,9 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/myTravelPalPlan.jsp" />
 	</definition>
 	
+	<definition name="travel/plan/view/modify" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/jsp/myTravelPalViewPlan.jsp" />
+	</definition>
 	
 	<!-- Error page views start -->
 	<definition name="generic/error" extends="base.definition">

@@ -4,10 +4,6 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1 class="board-head">Travel Board</h1>
-                <p class="lead"></p>
-                <ul class="list-unstyled">
-                    <li></li>
-                </ul>
                 <div id="TravelBoard">
                 </div>
             </div>

@@ -22,7 +22,7 @@ package com.abuabdul.mytravelpal.util;
  */
 public enum MyTravelPalType {
 
-	SOLO("Solo"), FAMILY("Family"), FRIENDS("Friends"), PROFESSIONAL("Professional"), OTHERS("Others");
+	SOLO("Solo"), FAMILY("Family"), FRIENDS("Friends"), COLLEAGUES("Colleagues"), OTHERS("Others");
 
 	private String type;
 

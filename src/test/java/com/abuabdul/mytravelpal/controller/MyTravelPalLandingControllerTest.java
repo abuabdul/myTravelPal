@@ -70,21 +70,25 @@ public class MyTravelPalLandingControllerTest {
 	}
 
 	@Test
-	public void myTravelPalPlan() throws Exception {
+	public void testMyTravelPalPlan() throws Exception {
 		Map<String, Object> inputFlashMap = Maps.newHashMap();
 		inputFlashMap.put("travelPlanned", Boolean.TRUE);
 		mockMvc.perform(post("/travel/plans.go").requestAttr(INPUT_FLASH_MAP_ATTRIBUTE, inputFlashMap))
 				.andExpect(status().isOk())
 				.andExpect(model().attributeExists("myTravelPalPlan", "travelPlanned", "travelModes", "travelTypes"))
 				.andExpect(view().name("travel/plan/form"));
-
 	}
 
 	@Test
-	public void myTravelPalMakePlan() throws Exception {
+	public void testMyTravelPalMakePlan() throws Exception {
 		mockMvc.perform(post("/secure/travel/makePlans.go").sessionAttr("myTravelPalPlan", new MyTravelPalPlan()))
 				.andExpect(status().isFound()).andExpect(flash().attribute("travelPlanned", true))
 				.andExpect(redirectedUrl("/travel/plans.go"));
 	}
 
+	@Test
+	public void testtMyTravelPalViewPlan() throws Exception {
+		mockMvc.perform(post("/secure/travel/viewPlans.go")).andExpect(status().isOk())
+				.andExpect(model().attributeExists("allTravelPlans")).andExpect(view().name("travel/plan/view/modify"));
+	}
 }

@@ -35,10 +35,10 @@
 }
 
 .fc-center h2 {
-	font-family: "Lato",sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #444;
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	color: #444;
 }
 
 /******************** Bootstrap Theme Override ********************/
@@ -56,14 +56,15 @@
 }
 
 .btn-primary {
-    background: #5AA7AA;
-    color: #ffffff;
-    border-color: #5AA7AA;
+	background: #5AA7AA;
+	color: #ffffff;
+	border-color: #5AA7AA;
 }
- 
-.btn-primary:hover, .btn-primary:focus, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
-    background: #98758B;
-    border-color: #98758B;
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.active, .open>.dropdown-toggle.btn-primary
+	{
+	background: #98758B;
+	border-color: #98758B;
 }
 
 .tooltip-inner {
@@ -75,6 +76,15 @@
 	border-top-color: #BEB6BB;
 }
 
+@media screen and (max-width:767px) {
+	.table-responsive-travel {
+		width: 100%;
+		margin-bottom: 15px;
+		overflow-y: hidden;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		border: 1px solid #ddd
+	}
+}
 /******************** myTravelPal Theme ********************/
 body {
 	padding-top: 70px;
@@ -88,7 +98,7 @@ body {
 	color: #5AA7AA;
 }
 
-.sub-title{
+.sub-title {
 	color: #BEB6BB;
 }
 
@@ -99,6 +109,7 @@ body {
 
 .fa-sm {
 	font-size: 15px;
+}
 }
 
 /* 

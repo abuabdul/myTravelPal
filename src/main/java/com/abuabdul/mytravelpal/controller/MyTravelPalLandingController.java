@@ -16,10 +16,13 @@
  */
 package com.abuabdul.mytravelpal.controller;
 
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToTravelPlan;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPlanToTravelPal;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelModes;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypes;
+import static com.google.common.collect.Lists.transform;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,6 +85,15 @@ public class MyTravelPalLandingController {
 		myTravelPalService.makeTravelPlans(travel);
 		redirectAttrs.addFlashAttribute("travelPlanned", true);
 		return "redirect:/travel/plans.go";
+	}
+
+	@RequestMapping(value = "/secure/travel/viewPlans.go")
+	public String myTravelPalViewPlan(ModelMap model) {
+		log.debug("Entering myTravelPalViewPlan() in " + this.getClass().getName());
+		List<MyTravelPalPlan> allTravelPlans = transform(myTravelPalService.retrieveAllTravelPlans(),
+				fromTravelPalToTravelPlan);
+		model.addAttribute("allTravelPlans", allTravelPlans);
+		return "travel/plan/view/modify";
 	}
 
 }

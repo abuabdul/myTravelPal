@@ -19,8 +19,8 @@
                         <a href="#">About</a>
                     </li>
                     <li>
-                        <a href="<c:url value='/travel/plans.go'/>">Plan</a>
-                    </li>
+                       <a href="<c:url value='/travel/plans.go'/>">Plan</a>
+                    </li>  
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                    <li><a href="http://abuabdul.com">&copy; abuabdul.com 2013-2016</a></li>
