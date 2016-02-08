@@ -56,7 +56,6 @@ $(function() {
 	/* Bootstrap editable */
 	$('.editable').editable({
 		type : 'text',
-		emptytext: '',
 		url : baseURL + '/secure/travel/updatePlans.go',
 		success : function(response, newValue) {
 			if (response.status == 'error')
@@ -66,7 +65,6 @@ $(function() {
 	
 	$('.editable-travelmode').editable({
 		type : 'select',
-		emptytext: '',
 		value: '',
 		source: baseURL + '/secure/travel/loadTravelMode.go',
 		url : baseURL + '/secure/travel/updatePlans.go',
@@ -78,7 +76,6 @@ $(function() {
 	
 	$('.editable-traveltype').editable({
 		type : 'select',
-		emptytext: '',
 		value: '',
 		source: baseURL + '/secure/travel/loadTravelType.go',
 		url : baseURL + '/secure/travel/updatePlans.go',
