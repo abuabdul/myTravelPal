@@ -16,6 +16,8 @@
  */
 package com.abuabdul.mytravelpal.controller;
 
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelModesMap;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypesMap;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
@@ -41,6 +43,7 @@ import org.testng.annotations.Test;
 import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
 import com.abuabdul.mytravelpal.data.service.MyTravelPalService;
 import com.beust.jcommander.internal.Maps;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @author abuabdul
@@ -113,5 +116,27 @@ public class MyTravelPalLandingControllerTest {
 				.param("value", "any_value")).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(json.toString()))
 				.andReturn();
+	}
+
+	@Test
+	public void testMyTravelPalTravelMode() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, String> map = Maps.newHashMap();
+		map.put("", "Select");
+		map.putAll(travelModesMap);
+		mockMvc.perform(post("/secure/travel/loadTravelMode.go")).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(mapper.writeValueAsString(map))).andReturn();
+	}
+
+	@Test
+	public void testMyTravelPalTravelType() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, String> map = Maps.newHashMap();
+		map.put("", "Select");
+		map.putAll(travelTypesMap);
+		mockMvc.perform(post("/secure/travel/loadTravelType.go")).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(mapper.writeValueAsString(map))).andReturn();
 	}
 }

@@ -1,4 +1,7 @@
 <%@ include file="/WEB-INF/jsp/includes/siteTags.jsp"%>
+<script type="text/javascript">
+	baseURL = '<spring:eval expression="@propertyConfigurer.getProperty(\'mytravelpal.app.base.url\')" />';
+</script>
     <%-- Navigation --%>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">

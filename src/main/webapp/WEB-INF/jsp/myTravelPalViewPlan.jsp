@@ -31,12 +31,28 @@
 							<c:forEach items="${allTravelPlans}" var="plan">
 								<tr>
 									<td></td>
-									<td><a href="#" class="editable" id="travelPlanDesc" data-pk="${plan.id}">${plan.travelPlanDesc}</a></td>
-									<td>${plan.startDate}&nbsp;${plan.startTime}</td>
-									<td>${plan.endDate}&nbsp;${plan.endTime}</td>
-									<td>${plan.travelMode}</td>
-									<td>${plan.travelType}</td>
-									<td>${plan.sideNote}</td>
+									<td>
+									    <a href="#" class="editable" id="travelPlanDesc" data-pk="${plan.id}">${plan.travelPlanDesc}</a>
+									</td>
+									<td>
+									   <a href="#" class="editable" id="startDate" data-pk="${plan.id}">${plan.startDate}</a>
+									     &nbsp;
+									   <a href="#" class="editable" id="startTime" data-pk="${plan.id}">${plan.startTime}</a>
+									</td>
+									<td>
+									   <a href="#" class="editable" id="endDate" data-pk="${plan.id}">${plan.endDate}</a>
+									     &nbsp;
+									   <a href="#" class="editable" id="endTime" data-pk="${plan.id}">${plan.endTime}</a>
+									</td>
+									<td>
+									    <a href="#" class="editable-travelmode" id="travelMode" data-pk="${plan.id}">${plan.travelMode}</a>
+									</td>
+									<td>
+									    <a href="#" class="editable-traveltype" id="travelType" data-pk="${plan.id}">${plan.travelType}</a>
+									</td>
+									<td>
+									    <a href="#" class="editable" id="sideNote" data-pk="${plan.id}">${plan.sideNote}</a>
+									</td>
 									<td>
 									   <a href="<c:url value='/secure/travel/${plan.id}/removePlans.go'/>">
 											<span class="glyhpicon glyphicon glyphicon-trash"></span>

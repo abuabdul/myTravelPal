@@ -53,11 +53,35 @@ $(function() {
 		});
 	}).draw();
 
-	var baseURL = '';
 	/* Bootstrap editable */
 	$('.editable').editable({
 		type : 'text',
-		url : baseURL + 'http://localhost:8697/myTravelPal/secure/travel/updatePlans.go',
+		emptytext: '',
+		url : baseURL + '/secure/travel/updatePlans.go',
+		success : function(response, newValue) {
+			if (response.status == 'error')
+				return response.msg;
+		}
+	});
+	
+	$('.editable-travelmode').editable({
+		type : 'select',
+		emptytext: '',
+		value: '',
+		source: baseURL + '/secure/travel/loadTravelMode.go',
+		url : baseURL + '/secure/travel/updatePlans.go',
+		success : function(response, newValue) {
+			if (response.status == 'error')
+				return response.msg;
+		}
+	});
+	
+	$('.editable-traveltype').editable({
+		type : 'select',
+		emptytext: '',
+		value: '',
+		source: baseURL + '/secure/travel/loadTravelType.go',
+		url : baseURL + '/secure/travel/updatePlans.go',
 		success : function(response, newValue) {
 			if (response.status == 'error')
 				return response.msg;

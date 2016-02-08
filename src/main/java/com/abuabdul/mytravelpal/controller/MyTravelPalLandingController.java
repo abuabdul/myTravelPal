@@ -20,7 +20,9 @@ import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToTrave
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPlanToTravelPal;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.isMandatoryField;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelModes;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelModesMap;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypes;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypesMap;
 import static com.google.common.collect.Lists.transform;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
@@ -47,6 +49,9 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.abuabdul.mytravelpal.data.document.MyTravelPal;
 import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
 import com.abuabdul.mytravelpal.data.service.MyTravelPalService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Maps;
 
 /**
  * @author abuabdul
@@ -137,5 +142,29 @@ public class MyTravelPalLandingController {
 		myTravelPalService.updateTravelPlan(pk, name, value);
 		json.put("status", "success");
 		return json.toString();
+	}
+
+	@RequestMapping(value = "/secure/travel/loadTravelMode.go", produces = "application/json")
+	@ResponseBody
+	public String myTravelPalTravelMode(HttpServletResponse response) throws JsonProcessingException {
+		log.debug("Entering myTravelPalTravelMode() in " + this.getClass().getName());
+		Map<String, String> map = Maps.newHashMap();
+		map.put("", "Select");
+		map.putAll(travelModesMap);
+		response.setStatus(HttpServletResponse.SC_OK);
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(map);
+	}
+
+	@RequestMapping(value = "/secure/travel/loadTravelType.go", produces = "application/json")
+	@ResponseBody
+	public String myTravelPalTravelType(HttpServletResponse response) throws JsonProcessingException {
+		log.debug("Entering myTravelPalTravelType() in " + this.getClass().getName());
+		Map<String, String> map = Maps.newHashMap();
+		map.put("", "Select");
+		map.putAll(travelTypesMap);
+		response.setStatus(HttpServletResponse.SC_OK);
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(map);
 	}
 }

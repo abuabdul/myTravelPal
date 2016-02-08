@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -34,6 +35,7 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * @author abuabdul
@@ -41,7 +43,7 @@ import com.google.common.collect.Lists;
  */
 public class MyTravelPalFunc {
 
-	public static Function<MyTravelPalPlan, MyTravelPal> fromTravelPlanToTravelPal = new Function<MyTravelPalPlan, MyTravelPal>() {
+	public static final Function<MyTravelPalPlan, MyTravelPal> fromTravelPlanToTravelPal = new Function<MyTravelPalPlan, MyTravelPal>() {
 		@Override
 		public MyTravelPal apply(MyTravelPalPlan plan) {
 			MyTravelPal myTravelPal = new MyTravelPal();
@@ -61,7 +63,7 @@ public class MyTravelPalFunc {
 		}
 	};
 
-	public static Function<MyTravelPal, MyTravelPalPlan> fromTravelPalToTravelPlan = new Function<MyTravelPal, MyTravelPalPlan>() {
+	public static final Function<MyTravelPal, MyTravelPalPlan> fromTravelPalToTravelPlan = new Function<MyTravelPal, MyTravelPalPlan>() {
 		@Override
 		public MyTravelPalPlan apply(MyTravelPal plan) {
 			MyTravelPalPlan travel = new MyTravelPalPlan();
@@ -80,7 +82,7 @@ public class MyTravelPalFunc {
 		}
 	};
 
-	public static List<String> travelModes = Lists.transform(Arrays.asList(MyTravelPalMode.values()),
+	public static final List<String> travelModes = Lists.transform(Arrays.asList(MyTravelPalMode.values()),
 			new Function<MyTravelPalMode, String>() {
 				@Override
 				public String apply(MyTravelPalMode mode) {
@@ -88,13 +90,27 @@ public class MyTravelPalFunc {
 				}
 			});
 
-	public static List<String> travelTypes = Lists.transform(Arrays.asList(MyTravelPalType.values()),
+	public static final List<String> travelTypes = Lists.transform(Arrays.asList(MyTravelPalType.values()),
 			new Function<MyTravelPalType, String>() {
 				@Override
 				public String apply(MyTravelPalType type) {
 					return type.toString();
 				}
 			});
+
+	public static final Map<String, String> travelModesMap = Maps.toMap(travelModes, new Function<String, String>() {
+		@Override
+		public String apply(String value) {
+			return value;
+		}
+	});
+
+	public static final Map<String, String> travelTypesMap = Maps.toMap(travelTypes, new Function<String, String>() {
+		@Override
+		public String apply(String value) {
+			return value;
+		}
+	});
 
 	public static final Date getUTCDateTime() {
 		return new DateTime(DateTimeZone.UTC).toDate();
@@ -109,17 +125,17 @@ public class MyTravelPalFunc {
 		return "abuabdul";
 	}
 
+	public static final List<Field> privateFieldsOf() {
+		Field[] declaredFields = MyTravelPalPlan.class.getDeclaredFields();
+		return Arrays.asList(declaredFields);
+	}
+
 	public static final Iterable<Field> privateFields = Iterables.filter(privateFieldsOf(), new Predicate<Field>() {
 		@Override
 		public boolean apply(Field field) {
 			return Modifier.isPrivate(field.getModifiers());
 		}
 	});
-
-	public static final List<Field> privateFieldsOf() {
-		Field[] declaredFields = MyTravelPalPlan.class.getDeclaredFields();
-		return Arrays.asList(declaredFields);
-	}
 
 	public static final boolean isMandatoryField(String name) {
 		System.out.println(privateFields.toString());
