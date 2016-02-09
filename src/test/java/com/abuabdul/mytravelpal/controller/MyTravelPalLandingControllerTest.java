@@ -95,7 +95,7 @@ public class MyTravelPalLandingControllerTest {
 	@Test
 	public void testMyTravelPalViewPlan() throws Exception {
 		Map<String, Object> inputFlashMap = Maps.newHashMap();
-		inputFlashMap.put("travelPlanCount", Boolean.TRUE);
+		inputFlashMap.put("travelPlanRemoved", Boolean.TRUE);
 		mockMvc.perform(post("/secure/travel/viewPlans.go").requestAttr(INPUT_FLASH_MAP_ATTRIBUTE, inputFlashMap))
 				.andExpect(status().isOk()).andExpect(model().attributeExists("allTravelPlans", "travelPlanRemoved"))
 				.andExpect(view().name("travel/plan/view/modify"));
