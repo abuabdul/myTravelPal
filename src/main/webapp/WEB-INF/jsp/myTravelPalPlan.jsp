@@ -13,7 +13,7 @@
 								    <c:if test="${travelPlanned}">
 										<div class="alert alert-success">
 											<a href="#" class="close" data-dismiss="alert">&times;</a> 
-											Your Travel is Planned!!!
+											Travel Planned!!!
 										</div>
 							        </c:if>
 							   </div>

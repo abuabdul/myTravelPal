@@ -5,6 +5,18 @@
 		<div class="col-lg-12 text-center">
 			<h1 class="board-head">Travel Plans</h1>
 			<p class="lead sub-title">Modify or Remove your travel plans.</p>
+			<div class="form-group">
+		          <div class="col-sm-3"></div>
+		          <div class="col-sm-6">
+					 <c:if test="${travelPlanRemoved && not empty allTravelPlans}">
+						<div class="alert alert-success">
+				     		<a href="#" class="close" data-dismiss="alert">&times;</a> 
+										Travel Plan Cancelled!!!
+						</div>
+					</c:if>
+			 	  </div>
+			      <div class="col-sm-3"></div>
+			</div>
 			<c:if test="${empty allTravelPlans}">
 				<div>
 					<h2>
@@ -55,7 +67,7 @@
 									</td>
 									<td>
 									   <a href="<c:url value='/secure/travel/${plan.id}/removePlans.go'/>">
-											<span class="glyhpicon glyphicon glyphicon-trash"></span>
+											<span class="glyhpicon glyphicon-trash"></span>
 									   </a>
 									</td>
 								</tr>

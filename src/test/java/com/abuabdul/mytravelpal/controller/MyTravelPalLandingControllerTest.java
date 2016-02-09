@@ -97,14 +97,14 @@ public class MyTravelPalLandingControllerTest {
 		Map<String, Object> inputFlashMap = Maps.newHashMap();
 		inputFlashMap.put("travelPlanCount", Boolean.TRUE);
 		mockMvc.perform(post("/secure/travel/viewPlans.go").requestAttr(INPUT_FLASH_MAP_ATTRIBUTE, inputFlashMap))
-				.andExpect(status().isOk()).andExpect(model().attributeExists("allTravelPlans", "travelPlanCount"))
+				.andExpect(status().isOk()).andExpect(model().attributeExists("allTravelPlans", "travelPlanRemoved"))
 				.andExpect(view().name("travel/plan/view/modify"));
 	}
 
 	@Test
 	public void testMyTravelPalRemovePlan() throws Exception {
 		mockMvc.perform(post("/secure/travel/12123123/removePlans.go")).andExpect(status().isFound())
-				.andExpect(flash().attributeExists("travelPlanCount"))
+				.andExpect(flash().attributeExists("travelPlanRemoved"))
 				.andExpect(redirectedUrl("/secure/travel/viewPlans.go"));
 	}
 

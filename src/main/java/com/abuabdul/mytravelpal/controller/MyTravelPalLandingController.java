@@ -57,7 +57,6 @@ import com.google.common.collect.Maps;
  * @author abuabdul
  *
  */
-
 @Controller
 public class MyTravelPalLandingController {
 
@@ -104,7 +103,7 @@ public class MyTravelPalLandingController {
 		log.debug("Entering myTravelPalViewPlan() in " + this.getClass().getName());
 		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 		if (inputFlashMap != null) {
-			model.addAttribute("travelPlanCount", inputFlashMap.get("travelPlanCount"));
+			model.addAttribute("travelPlanRemoved", inputFlashMap.get("travelPlanRemoved"));
 		}
 		List<MyTravelPalPlan> allTravelPlans = transform(myTravelPalService.retrieveAllTravelPlans(),
 				fromTravelPalToTravelPlan);
@@ -118,7 +117,7 @@ public class MyTravelPalLandingController {
 		MyTravelPal plan = new MyTravelPal();
 		plan.setId(id);
 		myTravelPalService.removeTravelPlan(plan);
-		redirectAttrs.addFlashAttribute("travelPlanCount", myTravelPalService.countTravelPlans());
+		redirectAttrs.addFlashAttribute("travelPlanRemoved", true);
 		return "redirect:/secure/travel/viewPlans.go";
 	}
 
