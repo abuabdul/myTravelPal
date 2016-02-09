@@ -65,7 +65,6 @@ $(function() {
 	
 	$('.editable-travelmode').editable({
 		type : 'select',
-		value: '',
 		source: baseURL + '/secure/travel/loadTravelMode.go',
 		url : baseURL + '/secure/travel/updatePlans.go',
 		success : function(response, newValue) {
@@ -76,7 +75,6 @@ $(function() {
 	
 	$('.editable-traveltype').editable({
 		type : 'select',
-		value: '',
 		source: baseURL + '/secure/travel/loadTravelType.go',
 		url : baseURL + '/secure/travel/updatePlans.go',
 		success : function(response, newValue) {

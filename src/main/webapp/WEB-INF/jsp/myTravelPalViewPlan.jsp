@@ -45,10 +45,10 @@
 									   <a href="#" class="editable" id="endTime" data-pk="${plan.id}">${plan.endTime}</a>
 									</td>
 									<td>
-									    <a href="#" class="editable-travelmode" id="travelMode" data-pk="${plan.id}">${plan.travelMode}</a>
+									    <a href="#" class="editable-travelmode" id="travelMode" data-value="${plan.travelMode}" data-pk="${plan.id}">${plan.travelMode}</a>
 									</td>
 									<td>
-									    <a href="#" class="editable-traveltype" id="travelType" data-pk="${plan.id}">${plan.travelType}</a>
+									    <a href="#" class="editable-traveltype" id="travelType" data-value="${plan.travelType}" data-pk="${plan.id}">${plan.travelType}</a>
 									</td>
 									<td>
 									    <a href="#" class="editable" id="sideNote" data-pk="${plan.id}">${plan.sideNote}</a>
