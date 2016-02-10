@@ -20,6 +20,7 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -32,6 +33,8 @@ import org.joda.time.DateTimeZone;
 import com.abuabdul.mytravelpal.data.document.MyTravelPal;
 import com.abuabdul.mytravelpal.data.model.CalendarEvent;
 import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -43,6 +46,9 @@ import com.google.common.collect.Maps;
  *
  */
 public class MyTravelPalFunc {
+
+	private static final SimpleDateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd");
+	private static final ObjectMapper MAPPER = new ObjectMapper();
 
 	public static final Function<MyTravelPalPlan, MyTravelPal> fromTravelPlanToTravelPal = new Function<MyTravelPalPlan, MyTravelPal>() {
 		@Override
@@ -83,21 +89,32 @@ public class MyTravelPalFunc {
 		}
 	};
 
-	public static final List<CalendarEvent> fromTravelPalToCalendarEvent(List<MyTravelPal> plans) {
+	public static final List<CalendarEvent> fromTravelPalToCalendarEvent(List<MyTravelPal> plans)
+			throws ParseException {
 		return Lists.transform(plans, new Function<MyTravelPal, CalendarEvent>() {
 			@Override
 			public CalendarEvent apply(MyTravelPal plan) {
 				CalendarEvent event = new CalendarEvent();
-				event.setId(plan.getId());
-				event.setTitle(plan.getTravelPlanDesc());
-				event.setStart(plan.getStartDate() + "T" + plan.getStartTime());
-				event.setEnd(plan.getEndDate() + "T" + plan.getEndTime());
-				event.setTravelMode(plan.getTravelMode());
-				event.setTravelType(plan.getTravelType());
-				event.setSideNote(plan.getSideNote());
+				try {
+					event.setId(plan.getId());
+					event.setTitle(plan.getTravelPlanDesc());
+					event.setStart(dateISO8601(plan.getStartDate())
+							+ (isNotEmpty(plan.getStartTime()) ? "T" + plan.getStartTime() : ""));
+					event.setEnd(isNotEmpty(plan.getEndDate()) ? dateISO8601(plan.getEndDate())
+							+ (isNotEmpty(plan.getEndTime()) ? "T" + plan.getEndTime() : "") : "");
+					event.setTravelMode(plan.getTravelMode());
+					event.setTravelType(plan.getTravelType());
+					event.setSideNote(plan.getSideNote());
+				} catch (ParseException ex) {
+					ex.printStackTrace();
+				}
 				return event;
 			}
 		});
+	}
+
+	public static final String eventJson(Object object) throws JsonProcessingException {
+		return MAPPER.writeValueAsString(object);
 	}
 
 	public static final List<String> travelModes = Lists.transform(Arrays.asList(MyTravelPalMode.values()),
@@ -141,6 +158,11 @@ public class MyTravelPalFunc {
 
 	public static final String getUser() {
 		return "abuabdul";
+	}
+
+	public static String dateISO8601(String dateStr) throws ParseException {
+		Date date = ISO8601.parse(dateStr);
+		return ISO8601.format(date);
 	}
 
 	public static final List<Field> privateFieldsOf() {

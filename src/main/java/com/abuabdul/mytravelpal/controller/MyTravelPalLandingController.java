@@ -16,6 +16,7 @@
  */
 package com.abuabdul.mytravelpal.controller;
 
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.eventJson;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToCalendarEvent;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToTravelPlan;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPlanToTravelPal;
@@ -27,6 +28,7 @@ import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypesMap;
 import static com.google.common.collect.Lists.transform;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -78,13 +80,10 @@ public class MyTravelPalLandingController {
 
 	@RequestMapping(value = "/secure/travel/planLoad.go", produces = "application/json")
 	@ResponseBody
-	public String myTravelPalEvents(ModelMap model) throws JsonProcessingException {
+	public String myTravelPalEvents(ModelMap model) throws JsonProcessingException, ParseException {
 		log.debug("Entering myTravelPalEvents() in " + this.getClass().getName());
 		List<MyTravelPal> travelPlans = myTravelPalService.retrieveAllTravelPlans();
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(fromTravelPalToCalendarEvent(travelPlans));
-		System.out.println(json);
-		return json;
+		return eventJson(fromTravelPalToCalendarEvent(travelPlans));
 	}
 
 	@RequestMapping(value = "/travel/plans.go")
@@ -138,6 +137,7 @@ public class MyTravelPalLandingController {
 	public String myTravelPalUpdatePlan(HttpServletResponse response, @RequestParam String pk,
 			@RequestParam String name, @RequestParam String value) {
 		log.debug("Entering myTravelPalUpdatePlan() in " + this.getClass().getName());
+		// TODO fix this
 		response.setStatus(HttpServletResponse.SC_OK);
 		JSONObject json = new JSONObject();
 		if (isEmpty(pk) || isEmpty(name)) {

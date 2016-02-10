@@ -93,64 +93,43 @@ $(function() {
 	});
 */
 	/* Full Calendar Plugin */
+	var title = '';
 	$('#TravelBoard').fullCalendar({
 		header : {
 			left : 'prev,next today',
 			center : 'title',
 			right : 'month,basicWeek,basicDay'
 		},
-		defaultDate : '2016-01-12',
-		editable : true,
+		defaultDate : moment().format('YYYY-MM-DD'),
 		eventLimit : true, // allow "more" link when too many events
-	    events: baseURL + '/secure/travel/planLoad.go'
+	    events: baseURL + '/secure/travel/planLoad.go',
+	    eventMouseover: function(calEvent, jsEvent, view) {
+	    	title = $(this).html();
+	        $(this).html(getGlyph(calEvent.travelMode)+' ['+calEvent.travelType+'] '+calEvent.title);
+	    },
+	    eventMouseout: function(calEvent, jsEvent, view) {
+	    	$(this).html(title);
+	    } 
 	});
-
-	// $(".fc-title").append("<i class='fa fa-motorcycle fa-sm'></i>");
-
-/*	events : [ {
-		title : 'All Day Event',
-		start : '2016-01-01',
-		className : 'fa fa-motorcycle fa-sm'
-	}, {
-		title : 'Long Event',
-		start : '2016-01-07',
-		end : '2016-01-10',
-		className : 'glyphicon glyphicon-trash'
-	}, {
-		id : 999,
-		title : 'Repeating Event',
-		start : '2016-01-09T16:00:00'
-	}, {
-		id : 999,
-		title : 'Repeating Event',
-		start : '2016-01-16T16:00:00'
-	}, {
-		title : 'Conference',
-		start : '2016-01-11',
-		end : '2016-01-13'
-	}, {
-		title : 'Meeting',
-		start : '2016-01-12T10:30:00',
-		end : '2016-01-12T12:30:00'
-	}, {
-		title : 'Lunch',
-		start : '2016-01-12T12:00:00'
-	}, {
-		title : 'Meeting',
-		start : '2016-01-12T14:30:00'
-	}, {
-		title : 'Happy Hour',
-		start : '2016-01-12T17:30:00'
-	}, {
-		title : 'Dinner',
-		start : '2016-01-12T20:00:00'
-	}, {
-		title : 'Birthday Party',
-		start : '2016-01-13T07:00:00'
-	}, {
-		title : 'Click for Google',
-		url : 'http://google.com/',
-		start : '2016-01-28'
-	} ]
-*/
+	
+	var getGlyph = function(mode){
+		switch (mode) {
+		    case 'Motor Bike':
+		        return '<i class="fa fa-motorcycle"></i>';
+		    case 'Bi Cycle':
+		        return '<i class="fa fa-bicycle"></i>';
+		    case 'Car':
+		    	return '<i class="fa fa-car"></i>';
+		    case 'Bus':
+		    	return '<i class="fa fa-bus"></i>';
+		    case 'Train':
+		    	return '<i class="fa fa-train"></i>';
+		    case 'Flight':
+		    	return '<i class="fa fa-plane"></i>';
+		    case 'Ship':
+		    	return '<i class="fa fa-ship"></i>';
+		    default:
+		    	return '';
+		}
+	}
 });
