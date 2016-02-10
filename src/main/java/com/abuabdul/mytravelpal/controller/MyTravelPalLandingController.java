@@ -16,6 +16,7 @@
  */
 package com.abuabdul.mytravelpal.controller;
 
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToCalendarEvent;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToTravelPlan;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPlanToTravelPal;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.isMandatoryField;
@@ -73,6 +74,17 @@ public class MyTravelPalLandingController {
 	@RequestMapping(value = "/travel/planBoard.go")
 	public String myTravelPal(ModelMap model) {
 		return "myTravelPal";
+	}
+
+	@RequestMapping(value = "/secure/travel/planLoad.go", produces = "application/json")
+	@ResponseBody
+	public String myTravelPalEvents(ModelMap model) throws JsonProcessingException {
+		log.debug("Entering myTravelPalEvents() in " + this.getClass().getName());
+		List<MyTravelPal> travelPlans = myTravelPalService.retrieveAllTravelPlans();
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(fromTravelPalToCalendarEvent(travelPlans));
+		System.out.println(json);
+		return json;
 	}
 
 	@RequestMapping(value = "/travel/plans.go")

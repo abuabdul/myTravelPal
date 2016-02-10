@@ -67,7 +67,7 @@
 									</td>
 									<td>
 									   <a href="<c:url value='/secure/travel/${plan.id}/removePlans.go'/>">
-											<span class="glyhpicon glyphicon-trash"></span>
+											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									   </a>
 									</td>
 								</tr>

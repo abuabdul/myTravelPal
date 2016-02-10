@@ -30,6 +30,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 import com.abuabdul.mytravelpal.data.document.MyTravelPal;
+import com.abuabdul.mytravelpal.data.model.CalendarEvent;
 import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -81,6 +82,23 @@ public class MyTravelPalFunc {
 			return travel;
 		}
 	};
+
+	public static final List<CalendarEvent> fromTravelPalToCalendarEvent(List<MyTravelPal> plans) {
+		return Lists.transform(plans, new Function<MyTravelPal, CalendarEvent>() {
+			@Override
+			public CalendarEvent apply(MyTravelPal plan) {
+				CalendarEvent event = new CalendarEvent();
+				event.setId(plan.getId());
+				event.setTitle(plan.getTravelPlanDesc());
+				event.setStart(plan.getStartDate() + "T" + plan.getStartTime());
+				event.setEnd(plan.getEndDate() + "T" + plan.getEndTime());
+				event.setTravelMode(plan.getTravelMode());
+				event.setTravelType(plan.getTravelType());
+				event.setSideNote(plan.getSideNote());
+				return event;
+			}
+		});
+	}
 
 	public static final List<String> travelModes = Lists.transform(Arrays.asList(MyTravelPalMode.values()),
 			new Function<MyTravelPalMode, String>() {

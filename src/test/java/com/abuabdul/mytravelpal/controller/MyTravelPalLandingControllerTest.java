@@ -29,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 import static org.springframework.web.servlet.DispatcherServlet.INPUT_FLASH_MAP_ATTRIBUTE;
 
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -40,10 +41,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.abuabdul.mytravelpal.data.model.CalendarEvent;
 import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
 import com.abuabdul.mytravelpal.data.service.MyTravelPalService;
 import com.beust.jcommander.internal.Maps;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 
 /**
  * @author abuabdul
@@ -138,5 +141,14 @@ public class MyTravelPalLandingControllerTest {
 		mockMvc.perform(post("/secure/travel/loadTravelType.go")).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(content().json(mapper.writeValueAsString(map))).andReturn();
+	}
+
+	@Test
+	public void testMyTravelPalEvents() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		List<CalendarEvent> events = Lists.newArrayList();
+		mockMvc.perform(post("/secure/travel/planLoad.go")).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(content().json(mapper.writeValueAsString(events))).andReturn();
 	}
 }
