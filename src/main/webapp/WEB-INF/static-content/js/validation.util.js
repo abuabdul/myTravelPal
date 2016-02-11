@@ -19,8 +19,8 @@
  *
  * This file contains the code for the global validation rules.
  *
- * @project   Note-Dovn App
- * @date      18-Dec-2015
+ * @project   myTravelPal App
+ * @date      15-Dec-2015
  * @author    Abubacker Siddik A, Chennai, India <abuabdul86@hotmail.com>
  * @licensor  Apache License 2.0
  * @site      
@@ -28,16 +28,15 @@
  */
 
 /*global validation rules and messages */
+var MYTRAVELPAL = window.MYTRAVELPAL || {};
 
-var NOTEDOVN = window.NOTEDOVN || {};
-
-(function(window, document, $, NOTEDOVN) {
+(function(window, document, $, MYTRAVELPAL) {
     "use strict";
-    NOTEDOVN.validationUtil = (function() {
+    MYTRAVELPAL.validationUtil = (function() {
 
         var validationRules = function() {
         	
-            $('#scratchPadForm').bootstrapValidator({
+            $('#myTravelPalPlan').bootstrapValidator({
                 live: 'enabled',
                 message: 'This value is not valid',
                 feedbackIcons: {
@@ -46,18 +45,32 @@ var NOTEDOVN = window.NOTEDOVN || {};
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    /* for note-dovn form */
-                	aboutNote: {
+                    /* for mytravelpal form */
+                	travelPlanDesc: {
                         validators: {
                             notEmpty: {
-                                message: 'Please write something to tell about this note'
+                                message: 'Travel plan title is important'
                             }
                         }
                     },
-                    noteMsg: {
+                    startDate: {
                         validators: {
                             notEmpty: {
-                                message: 'The key note can never be empty by any chance'
+                                message: 'The start date is important for travel plan'
+                            }
+                        }
+                    },
+                    travelMode:{
+                    	validators: {
+                            notEmpty: {
+                                message: 'Please select a travel mode'
+                            }
+                        }
+                    },
+                    travelType:{
+                    	validators: {
+                            notEmpty: {
+                                message: 'Please select a travel type'
                             }
                         }
                     }
@@ -65,8 +78,8 @@ var NOTEDOVN = window.NOTEDOVN || {};
             });
             
             $('#resetButton').on('click touchstart', function() {
-            	bootstrapValidatorObj('#scratchPadForm').resetForm(true);
-            	$("#category,#reasonNote,#sideNote").val('');
+            	bootstrapValidatorObj('#myTravelPalPlan').resetForm(true);
+            	$("#startTime,#endDate,#endTime,#sideNote").val('');      	
             });
             
 	       	 var bootstrapValidatorObj = function(formName){
@@ -87,7 +100,7 @@ var NOTEDOVN = window.NOTEDOVN || {};
 
     }());
 
-}(window, document, jQuery, NOTEDOVN));
+}(window, document, jQuery, MYTRAVELPAL));
 
 /* Bind the validation utilities function to document load */
-jQuery(NOTEDOVN.validationUtil.initFunction);
+jQuery(MYTRAVELPAL.validationUtil.initFunction);

@@ -142,6 +142,11 @@ body {
 	font-size: 15px;
 }
 
+.form-horizontal .has-feedback .form-control-feedback {
+	/* Adjust feedback icon position */
+    right: -15px;
+}
+
 @media screen and (max-width:767px) {
 	.table-responsive-travel {
 		width: 100%;
