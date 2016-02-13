@@ -27,6 +27,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
@@ -46,6 +48,8 @@ import com.google.common.collect.Maps;
  *
  */
 public class MyTravelPalFunc {
+
+	private static final Logger log = LogManager.getLogger(MyTravelPalFunc.class.getName());
 
 	private static final SimpleDateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd");
 	private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -106,7 +110,7 @@ public class MyTravelPalFunc {
 					event.setTravelType(plan.getTravelType());
 					event.setSideNote(plan.getSideNote());
 				} catch (ParseException ex) {
-					ex.printStackTrace();
+					log.warn("Cannot parse corrupt dates. " + ex.getMessage());
 				}
 				return event;
 			}
