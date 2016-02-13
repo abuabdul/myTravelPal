@@ -45,7 +45,7 @@
 						   <div class="form-group">
 							   <div class="col-sm-3"></div>
 							   <div class="col-sm-3">
-							      <form:input type="text" class="form-control" path="endDate" id="TravelDatePicker-End" placeholder="End Date"
+							      <form:input type="text" class="form-control" path="endDate" placeholder="End Date"
 							      			  data-toggle="tooltip" data-placement="top"
 								              title="Does it end? When?"/>							      
 							   </div>
