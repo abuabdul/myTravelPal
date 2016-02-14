@@ -31,9 +31,14 @@
 	  					   <div class="form-group">
 		  					   <div class="col-sm-3"></div>
 							   <div class="col-sm-3">
-								   <form:input type="text" class="form-control travel-start" path="startDate" placeholder="Start Date" 
-								               data-toggle="tooltip" data-placement="top"
-								               title="When does it start?"/>
+							     <div class="input-group">
+								       <form:input type="text" class="form-control travel-datepicker" readonly="true" path="startDate" placeholder="Start Date" 
+									               data-toggle="tooltip" data-placement="top"
+									               title="When does it start?"/>
+								       <div class="input-group-addon">
+	        							  <span class="glyphicon glyphicon-calendar"></span>
+	    							   </div>
+							     </div>
 							    </div>
 							    <div class="col-sm-3">
 							      <form:input type="text" class="form-control" path="startTime" placeholder="Start Time"
@@ -45,9 +50,14 @@
 						   <div class="form-group">
 							   <div class="col-sm-3"></div>
 							   <div class="col-sm-3">
-							      <form:input type="text" class="form-control" path="endDate" placeholder="End Date"
-							      			  data-toggle="tooltip" data-placement="top"
-								              title="Does it end? When?"/>							      
+							      <div class="input-group">
+								       <form:input type="text" class="form-control travel-datepicker" readonly="true" path="endDate" placeholder="End Date"
+								      			  data-toggle="tooltip" data-placement="top"
+									              title="Does it end? When?"/>	
+								       <div class="input-group-addon">
+	        							  <span class="glyphicon glyphicon-calendar"></span>
+	    							   </div>
+							     </div>
 							   </div>
 							   <div class="col-sm-3">
 							      <form:input type="text" class="form-control" path="endTime" placeholder="End Time"

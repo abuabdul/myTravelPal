@@ -83,15 +83,15 @@ $(function() {
 		}
 	});
 
-/*	$('.travel-start').datepicker({
-		format : "mm/dd/yyyy",
+	$('.travel-datepicker').datepicker({
+		format : "yyyy-mm-dd",
 		weekStart : 0,
-		todayBtn : "linked",
 		multidate : false,
 		autoclose : true,
-		todayHighlight : true
+		todayHighlight: true,
+		assumeNearbyYear: true
 	});
-*/
+
 	/* Full Calendar Plugin */
 	var title = '';
 	$('#TravelBoard').fullCalendar({
