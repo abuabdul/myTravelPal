@@ -7,13 +7,12 @@
 <div class="divider">&nbsp;</div>
 <br />
 <div>
-	Have you ever wondered to remember your learnings/knowledge that you come across and learn in your daily life? <br/>
-	"Oh! It's new word I learned the other day. But I forgot". <br/>
-	Phrases like these are often heard. Knodex could be a remedy for this. <br/>
-	<span class="fontSize16px">K</span><span class="fontSize12px">NO</span>dex is a knowledge indexing tool. 
-	It enables your knowledge perfectly saved and indexed out for you. 
-	It sorts the knowledge with keys and displays by the key order.
-	This indexer tool will allow you to remove your entries or learnings you indexed. 
-	Its very easy and user-friendly tool to list your knowledge displayed out whenever you like no matter wherever you are!
+	 myTravelPal is calendar view of my travel plans. Developed using fullcalendar plugin, 
+	 myTravelPal runs on mongodb with spring boot. Travel plans are fed into the system using a simple form.
+	 The form captures the travel mode, type, purpose/description of the travel, start and end time of the
+	 travel. One can customize the application for their own needs. For now, this application is show-casing 
+	 my travel plans.
+     <br/>
+	 <br/>
 </div>
 </div>

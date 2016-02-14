@@ -72,7 +72,7 @@
 								      <div class="input-group bootstrap-timepicker timepicker">
 									       <form:input type="text" class="form-control travel-timepicker" path="endTime" placeholder="End Time"
 	   							      			  data-toggle="tooltip" data-placement="top"
-									              title="End time? After 9AM on any day"/>
+									              title="End time? Any time on start date or After 9am on any end date"/>
 									       <div class="input-group-addon">
 		        							  <span class="glyphicon glyphicon-time"></span>
 		    							   </div>
