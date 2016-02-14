@@ -57,6 +57,18 @@ var MYTRAVELPAL = window.MYTRAVELPAL || {};
                         validators: {
                             notEmpty: {
                                 message: 'The start date is important for travel plan'
+                            }, 
+                            date: {
+                                format: 'YYYY-MM-DD',
+                                message: 'The date is not a valid format'
+                            }
+                        }
+                    },
+                    endDate: {
+                        validators: {
+                        	date: {
+                        		format: 'YYYY-MM-DD',
+                                message: 'The date is not a valid format'
                             }
                         }
                     },
@@ -79,12 +91,12 @@ var MYTRAVELPAL = window.MYTRAVELPAL || {};
             
             $('#resetButton').on('click touchstart', function() {
             	bootstrapValidatorObj('#myTravelPalPlan').resetForm(true);
-            	$("#startTime,#endDate,#endTime,#sideNote").val('');      	
+            	$("#startTime,#endTime,#sideNote").val('');      	
             });
             
 	       	 var bootstrapValidatorObj = function(formName){
 	     	   	return $(formName).data('bootstrapValidator');
-	     	 }
+	     	 };
             
         };
         

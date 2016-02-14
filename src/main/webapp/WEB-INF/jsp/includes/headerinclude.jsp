@@ -19,6 +19,9 @@
 <link href="<c:url value='/resources/css/fullcalendar.min.css'/>" rel="stylesheet"/>
 <link href="<c:url value='/resources/css/fullcalendar.print.css'/>" rel="stylesheet" media="print"/>
 
+<!-- For Bootstrap Time Picker -->
+<link href="<c:url value='/resources/css/bootstrap-timepicker.min.css'/>" rel="stylesheet"/>
+
 <link href="<c:url value='/resources/css/myTravelPal.css'/>" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

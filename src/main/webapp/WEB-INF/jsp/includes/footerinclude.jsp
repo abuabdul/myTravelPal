@@ -21,4 +21,7 @@
 <!-- bootstrap editable -->
 <script src="<c:url value='/resources/js/bootstrap-editable.min.js'/>"></script>
 
+<!-- bootstrap editable -->
+<script src="<c:url value='/resources/js/bootstrap-timepicker.min.js'/>"></script>
+
 <script src="<c:url value='/resources/js/myTravelPal.js'/>"></script>

@@ -30,7 +30,7 @@
 						   </div>
 	  					   <div class="form-group">
 		  					   <div class="col-sm-3"></div>
-							   <div class="col-sm-3">
+							   <div class="col-sm-6">
 							     <div class="input-group">
 								       <form:input type="text" class="form-control travel-datepicker" readonly="true" path="startDate" placeholder="Start Date" 
 									               data-toggle="tooltip" data-placement="top"
@@ -38,18 +38,13 @@
 								       <div class="input-group-addon">
 	        							  <span class="glyphicon glyphicon-calendar"></span>
 	    							   </div>
-							     </div>
-							    </div>
-							    <div class="col-sm-3">
-							      <form:input type="text" class="form-control" path="startTime" placeholder="Start Time"
-							      			  data-toggle="tooltip" data-placement="top"
-								              title="What time?"/>
+							      </div>
 							    </div>
 								<div class="col-sm-3"></div>
 						   </div>
-						   <div class="form-group">
-							   <div class="col-sm-3"></div>
-							   <div class="col-sm-3">
+	  					   <div class="form-group">
+		  					   <div class="col-sm-3"></div>
+							    <div class="col-sm-6">
 							      <div class="input-group">
 								       <form:input type="text" class="form-control travel-datepicker" readonly="true" path="endDate" placeholder="End Date"
 								      			  data-toggle="tooltip" data-placement="top"
@@ -57,13 +52,32 @@
 								       <div class="input-group-addon">
 	        							  <span class="glyphicon glyphicon-calendar"></span>
 	    							   </div>
-							     </div>
-							   </div>
+							      </div>
+							    </div>
+								<div class="col-sm-3"></div>
+						   </div>
+						   <div class="form-group">
+							   <div class="col-sm-3"></div>
 							   <div class="col-sm-3">
-							      <form:input type="text" class="form-control" path="endTime" placeholder="End Time"
-   							      			  data-toggle="tooltip" data-placement="top"
-								              title="What time?"/>
-							   </div>
+								  <div class="input-group bootstrap-timepicker timepicker">
+								       <form:input type="text" class="form-control travel-timepicker" path="startTime" placeholder="Start Time"
+							      			  data-toggle="tooltip" data-placement="top"
+								              title="Start time?"/>
+								       <div class="input-group-addon">
+	        							  <span class="glyphicon glyphicon-time"></span>
+	    							   </div>
+							      </div>            
+							    </div>
+							    <div class="col-sm-3">
+								      <div class="input-group bootstrap-timepicker timepicker">
+									       <form:input type="text" class="form-control travel-timepicker" path="endTime" placeholder="End Time"
+	   							      			  data-toggle="tooltip" data-placement="top"
+									              title="End time?"/>
+									       <div class="input-group-addon">
+		        							  <span class="glyphicon glyphicon-time"></span>
+		    							   </div>
+								      </div>
+							     </div> 
 							   <div class="col-sm-3"></div>
 						   </div>
 						   <div class="form-group">

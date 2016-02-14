@@ -62,20 +62,10 @@ $(function() {
 				return response.msg;
 		}
 	});
-	
+
 	$('.editable-travelmode').editable({
 		type : 'select',
-		source: baseURL + '/secure/travel/loadTravelMode.go',
-		url : baseURL + '/secure/travel/updatePlans.go',
-		success : function(response, newValue) {
-			if (response.status == 'error')
-				return response.msg;
-		}
-	});
-	
-	$('.editable-traveltype').editable({
-		type : 'select',
-		source: baseURL + '/secure/travel/loadTravelType.go',
+		source : baseURL + '/secure/travel/loadTravelMode.go',
 		url : baseURL + '/secure/travel/updatePlans.go',
 		success : function(response, newValue) {
 			if (response.status == 'error')
@@ -83,53 +73,85 @@ $(function() {
 		}
 	});
 
+	$('.editable-traveltype').editable({
+		type : 'select',
+		source : baseURL + '/secure/travel/loadTravelType.go',
+		url : baseURL + '/secure/travel/updatePlans.go',
+		success : function(response, newValue) {
+			if (response.status == 'error')
+				return response.msg;
+		}
+	});
+
+	/* Bootstrap datepicker - using editable */
 	$('.travel-datepicker').datepicker({
 		format : "yyyy-mm-dd",
 		weekStart : 0,
 		multidate : false,
 		autoclose : true,
-		todayHighlight: true,
-		assumeNearbyYear: true
+		todayHighlight : true,
+		assumeNearbyYear : true
+	}).on('hide.datepicker', function(e) {
+		// Revalidate the date when user changes it
+		var inputName = $(this).closest("input").attr("name");
+		var form = "#" + $(this).closest("form").attr("id");
+		bootstrapValidatorObj(form).revalidateField(inputName);
 	});
+	
+	var bootstrapValidatorObj = function(formName) {
+		return $(formName).data('bootstrapValidator');
+	};
+	
+	/* Bootstrap timepicker */
+	 $('.travel-timepicker').timepicker({
+         minuteStep: 1,
+         secondStep: 1,
+         showSeconds: true,
+         showMeridian: false
+     });
 
 	/* Full Calendar Plugin */
 	var title = '';
-	$('#TravelBoard').fullCalendar({
-		header : {
-			left : 'prev,next today',
-			center : 'title',
-			right : 'month,basicWeek,basicDay'
-		},
-		defaultDate : moment().format('YYYY-MM-DD'),
-		eventLimit : true, // allow "more" link when too many events
-	    events: baseURL + '/secure/travel/planLoad.go',
-	    eventMouseover: function(calEvent, jsEvent, view) {
-	    	title = $(this).html();
-	        $(this).html(getGlyph(calEvent.travelMode)+' ['+calEvent.travelType+'] '+calEvent.title);
-	    },
-	    eventMouseout: function(calEvent, jsEvent, view) {
-	    	$(this).html(title);
-	    } 
-	});
-	
-	var getGlyph = function(mode){
+	$('#TravelBoard').fullCalendar(
+			{
+				header : {
+					left : 'prev,next today',
+					center : 'title',
+					right : 'month,basicWeek,basicDay'
+				},
+				defaultDate : moment().format('YYYY-MM-DD'),
+				eventLimit : true, // allow "more" link when too many events
+				events : baseURL + '/secure/travel/planLoad.go',
+				eventMouseover : function(calEvent, jsEvent, view) {
+					title = $(this).html();
+					$(this).html(
+							getGlyph(calEvent.travelMode) + ' ['
+									+ calEvent.travelType + '] '
+									+ calEvent.title);
+				},
+				eventMouseout : function(calEvent, jsEvent, view) {
+					$(this).html(title);
+				}
+			});
+
+	var getGlyph = function(mode) {
 		switch (mode) {
-		    case 'Motor Bike':
-		        return '<i class="fa fa-motorcycle"></i>';
-		    case 'Bi Cycle':
-		        return '<i class="fa fa-bicycle"></i>';
-		    case 'Car':
-		    	return '<i class="fa fa-car"></i>';
-		    case 'Bus':
-		    	return '<i class="fa fa-bus"></i>';
-		    case 'Train':
-		    	return '<i class="fa fa-train"></i>';
-		    case 'Flight':
-		    	return '<i class="fa fa-plane"></i>';
-		    case 'Ship':
-		    	return '<i class="fa fa-ship"></i>';
-		    default:
-		    	return '';
+		case 'Motor Bike':
+			return '<i class="fa fa-motorcycle"></i>';
+		case 'Bi Cycle':
+			return '<i class="fa fa-bicycle"></i>';
+		case 'Car':
+			return '<i class="fa fa-car"></i>';
+		case 'Bus':
+			return '<i class="fa fa-bus"></i>';
+		case 'Train':
+			return '<i class="fa fa-train"></i>';
+		case 'Flight':
+			return '<i class="fa fa-plane"></i>';
+		case 'Ship':
+			return '<i class="fa fa-ship"></i>';
+		default:
+			return '';
 		}
 	}
 });
