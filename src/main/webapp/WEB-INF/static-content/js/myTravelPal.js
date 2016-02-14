@@ -95,6 +95,7 @@ $(function() {
 		// Revalidate the date when user changes it
 		var inputName = $(this).closest("input").attr("name");
 		var form = "#" + $(this).closest("form").attr("id");
+		if($(this).val() == '' && inputName === 'endDate') return; 
 		bootstrapValidatorObj(form).revalidateField(inputName);
 	});
 	
@@ -112,8 +113,7 @@ $(function() {
 
 	/* Full Calendar Plugin */
 	var title = '';
-	$('#TravelBoard').fullCalendar(
-			{
+	$('#TravelBoard').fullCalendar({
 				header : {
 					left : 'prev,next today',
 					center : 'title',
@@ -121,13 +121,13 @@ $(function() {
 				},
 				defaultDate : moment().format('YYYY-MM-DD'),
 				eventLimit : true, // allow "more" link when too many events
+				displayEventEnd : true,
+				timezone : 'UTC',
 				events : baseURL + '/secure/travel/planLoad.go',
 				eventMouseover : function(calEvent, jsEvent, view) {
 					title = $(this).html();
-					$(this).html(
-							getGlyph(calEvent.travelMode) + ' ['
-									+ calEvent.travelType + '] '
-									+ calEvent.title);
+					var endsAt = calEvent.endTimeHoverMsg ? ' ends at '+calEvent.endTimeHoverMsg : '';
+					$(this).html(getGlyph(calEvent.travelMode) + ' ['+ calEvent.travelType + '] '+ calEvent.title + endsAt);
 				},
 				eventMouseout : function(calEvent, jsEvent, view) {
 					$(this).html(title);
@@ -154,4 +154,26 @@ $(function() {
 			return '';
 		}
 	}
+	
+	  $("#About").poshytip({
+		  content: $("#AboutMyTravelPal").html(),
+		  className: 'tip-mytravelpal',
+		  showOn: 'none',
+		  alignTo: 'target',
+	      alignX: 'center',
+		  offsetX: 0,
+		  offsetY: 3,
+		  fade: true
+	  });
+	  
+   	  $(document).click(function(e){
+		  if(e.target.id != 'About'){
+		    $("#About").poshytip('hide');
+		  }
+	  });
+	  
+	  $("#About").click(function(){
+		  $(this).poshytip('show');
+	  });
+
 });

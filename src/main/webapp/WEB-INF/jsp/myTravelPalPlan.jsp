@@ -72,7 +72,7 @@
 								      <div class="input-group bootstrap-timepicker timepicker">
 									       <form:input type="text" class="form-control travel-timepicker" path="endTime" placeholder="End Time"
 	   							      			  data-toggle="tooltip" data-placement="top"
-									              title="End time?"/>
+									              title="End time? After 9AM on any day"/>
 									       <div class="input-group-addon">
 		        							  <span class="glyphicon glyphicon-time"></span>
 		    							   </div>
@@ -82,7 +82,7 @@
 						   </div>
 						   <div class="form-group">
 							   <div class="col-sm-3"></div>
-							   <div class="col-sm-4">
+							   <div class="col-sm-6">
 							      <form:select class="form-control" path="travelMode"
 							      			  data-toggle="tooltip" data-placement="top"
 								              title="You can choose the mode of travel you want to make.">
@@ -90,7 +90,11 @@
 	                                          <form:options items="${travelModes}"></form:options>
 	                              </form:select>            
 							   </div>
-							   <div class="col-sm-2">
+							   <div class="col-sm-3"></div>
+						   </div>
+						   <div class="form-group">
+							   <div class="col-sm-3"></div>
+							   <div class="col-sm-6">
 							      <form:select class="form-control" path="travelType"
 							      			  data-toggle="tooltip" data-placement="top"
 								              title="Do you want to take solo trip/family? Choose travel type here.">

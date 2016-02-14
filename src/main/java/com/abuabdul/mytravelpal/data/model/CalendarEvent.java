@@ -27,6 +27,7 @@ public class CalendarEvent {
 	private String url;
 	private String start;
 	private String end;
+	private String endTimeHoverMsg;
 	private String travelMode;
 	private String travelType;
 	private String sideNote;
@@ -149,5 +150,20 @@ public class CalendarEvent {
 	 */
 	public void setSideNote(String sideNote) {
 		this.sideNote = sideNote;
+	}
+
+	/**
+	 * @return the endTimeHoverMsg
+	 */
+	public String getEndTimeHoverMsg() {
+		return endTimeHoverMsg;
+	}
+
+	/**
+	 * @param endTimeHoverMsg
+	 *            the endTimeHoverMsg to set
+	 */
+	public void setEndTimeHoverMsg(String endTimeHoverMsg) {
+		this.endTimeHoverMsg = endTimeHoverMsg;
 	}
 }

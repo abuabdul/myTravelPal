@@ -106,6 +106,7 @@ public class MyTravelPalFunc {
 							+ (isNotEmpty(plan.getStartTime()) ? "T" + plan.getStartTime() : ""));
 					event.setEnd(isNotEmpty(plan.getEndDate()) ? dateISO8601(plan.getEndDate())
 							+ (isNotEmpty(plan.getEndTime()) ? "T" + plan.getEndTime() : "") : "");
+					event.setEndTimeHoverMsg(plan.getEndTime());
 					event.setTravelMode(plan.getTravelMode());
 					event.setTravelType(plan.getTravelType());
 					event.setSideNote(plan.getSideNote());
@@ -118,7 +119,9 @@ public class MyTravelPalFunc {
 	}
 
 	public static final String eventJson(Object object) throws JsonProcessingException {
-		return MAPPER.writeValueAsString(object);
+		String jsonEventObjects = MAPPER.writeValueAsString(object);
+		log.info("Event objects JSON :" + jsonEventObjects);
+		return jsonEventObjects;
 	}
 
 	public static final List<String> travelModes = Lists.transform(Arrays.asList(MyTravelPalMode.values()),

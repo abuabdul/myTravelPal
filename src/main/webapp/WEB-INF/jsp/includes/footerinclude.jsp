@@ -24,4 +24,7 @@
 <!-- bootstrap editable -->
 <script src="<c:url value='/resources/js/bootstrap-timepicker.min.js'/>"></script>
 
+<!-- poshytip plugin -->
+<script src="<c:url value='/resources/js/jquery.poshytip.js'/>"></script>
+
 <script src="<c:url value='/resources/js/myTravelPal.js'/>"></script>

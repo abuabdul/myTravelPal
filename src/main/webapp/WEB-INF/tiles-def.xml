@@ -11,6 +11,7 @@
 		<put-attribute name="topmenu" value="/WEB-INF/jsp/fixedTopMenu.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/layouts/blank.jsp" />
 		<put-attribute name="siteFooterInclude" value="/WEB-INF/jsp/includes/footerinclude.jsp" />
+		<put-attribute name="aboutFooter" value="/WEB-INF/jsp/aboutMyTravelPal.jsp"/>		
 	</definition>
 	
 	<definition name="myTravelPal" extends="base.definition">
