@@ -137,7 +137,6 @@ public class MyTravelPalLandingController {
 	public String myTravelPalUpdatePlan(HttpServletResponse response, @RequestParam String pk,
 			@RequestParam String name, @RequestParam String value) {
 		log.debug("Entering myTravelPalUpdatePlan() in " + this.getClass().getName());
-		// TODO fix this
 		response.setStatus(HttpServletResponse.SC_OK);
 		JSONObject json = new JSONObject();
 		if (isEmpty(pk) || isEmpty(name)) {

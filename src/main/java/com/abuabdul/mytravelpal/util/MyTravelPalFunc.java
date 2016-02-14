@@ -172,24 +172,55 @@ public class MyTravelPalFunc {
 		return ISO8601.format(date);
 	}
 
-	public static final List<Field> privateFieldsOf() {
+	public static final Iterable<Field> privateMandatoryFields = Iterables.filter(privateFieldsOfMyTravelPlan(),
+			new Predicate<Field>() {
+				@Override
+				public boolean apply(Field field) {
+					return Modifier.isPrivate(field.getModifiers()) && mandatoryFields().contains(field.getName());
+				}
+			});
+
+	public static final List<String> privateMandatoryFieldsList = Lists
+			.transform(Lists.newArrayList(privateMandatoryFields), new Function<Field, String>() {
+				@Override
+				public String apply(Field field) {
+					return field.getName();
+				}
+			});
+
+	public static final boolean isMandatoryField(String name) {
+		if (isNotEmpty(name)) {
+			return privateMandatoryFieldsList.contains(name);
+		}
+		return false;
+	}
+
+	public static final List<Field> privateFieldsOfMyTravelPlan() {
 		Field[] declaredFields = MyTravelPalPlan.class.getDeclaredFields();
 		return Arrays.asList(declaredFields);
 	}
 
-	public static final Iterable<Field> privateFields = Iterables.filter(privateFieldsOf(), new Predicate<Field>() {
-		@Override
-		public boolean apply(Field field) {
-			return Modifier.isPrivate(field.getModifiers());
-		}
-	});
+	public static final List<String> mandatoryFields() {
+		return Lists.transform(Arrays.asList(Mandatory.values()), new Function<Mandatory, String>() {
+			@Override
+			public String apply(Mandatory field) {
+				return field.toString();
+			}
+		});
+	}
 
-	public static final boolean isMandatoryField(String name) {
-		System.out.println(privateFields.toString());
-		if (isNotEmpty(name)) {
-			// TODO privateFields
-			return name.equalsIgnoreCase("aboutNote") ? true : name.equalsIgnoreCase("noteMsg") ? true : false;
+	public static enum Mandatory {
+		TRAVELPLAN("travelPlanDesc"), STARTDATE("startDate"), TRAVELMODE("travelMode"), TRAVELTYPE("travelType");
+
+		private String mandatoryField;
+
+		Mandatory(String field) {
+			this.mandatoryField = field;
 		}
-		return false;
+
+		@Override
+		public String toString() {
+			return this.mandatoryField;
+		}
 	}
 }
