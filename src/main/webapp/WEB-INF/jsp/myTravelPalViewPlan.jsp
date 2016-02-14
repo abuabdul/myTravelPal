@@ -47,12 +47,12 @@
 									    <a href="#" class="editable" id="travelPlanDesc" data-pk="${plan.id}">${plan.travelPlanDesc}</a>
 									</td>
 									<td>
-									   <a href="#" class="editable" id="startDate" data-pk="${plan.id}">${plan.startDate}</a>
+									   <a href="#" class="editable-traveldate" id="startDate" data-pk="${plan.id}">${plan.startDate}</a>
 									     &nbsp;
 									   <a href="#" class="editable" id="startTime" data-pk="${plan.id}">${plan.startTime}</a>
 									</td>
 									<td>
-									   <a href="#" class="editable" id="endDate" data-pk="${plan.id}">${plan.endDate}</a>
+									   <a href="#" class="editable-traveldate" id="endDate" data-pk="${plan.id}">${plan.endDate}</a>
 									     &nbsp;
 									   <a href="#" class="editable" id="endTime" data-pk="${plan.id}">${plan.endTime}</a>
 									</td>

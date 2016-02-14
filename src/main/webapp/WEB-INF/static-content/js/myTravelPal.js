@@ -63,6 +63,15 @@ $(function() {
 		}
 	});
 
+	$('.editable-traveldate').editable({
+		type : 'date',
+		url : baseURL + '/secure/travel/updatePlans.go',
+		success : function(response, newValue) {
+			if (response.status == 'error')
+				return response.msg;
+		}
+	});
+	
 	$('.editable-travelmode').editable({
 		type : 'select',
 		source : baseURL + '/secure/travel/loadTravelMode.go',
@@ -72,7 +81,7 @@ $(function() {
 				return response.msg;
 		}
 	});
-
+	
 	$('.editable-traveltype').editable({
 		type : 'select',
 		source : baseURL + '/secure/travel/loadTravelType.go',
@@ -95,7 +104,7 @@ $(function() {
 		// Revalidate the date when user changes it
 		var inputName = $(this).closest("input").attr("name");
 		var form = "#" + $(this).closest("form").attr("id");
-		if($(this).val() == '' && inputName === 'endDate') return; 
+		if($(this).val() === '' && inputName === 'endDate') return; 
 		bootstrapValidatorObj(form).revalidateField(inputName);
 	});
 	
@@ -155,6 +164,7 @@ $(function() {
 		}
 	}
 	
+	  /* Poshytip Plugin */
 	  $("#About").poshytip({
 		  content: $("#AboutMyTravelPal").html(),
 		  className: 'tip-mytravelpal',
