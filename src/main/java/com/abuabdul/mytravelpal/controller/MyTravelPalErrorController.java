@@ -18,6 +18,8 @@ package com.abuabdul.mytravelpal.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MyTravelPalErrorController implements ErrorController {
 
+	private static final Logger log = LogManager.getLogger(MyTravelPalErrorController.class.getName());
+
 	private final String ERROR_PATH = "/error";
 	private final String ERROR_VIEW = "generic/error";
 
@@ -38,7 +42,11 @@ public class MyTravelPalErrorController implements ErrorController {
 	}
 
 	@RequestMapping(value = ERROR_PATH)
-	public String error(HttpServletRequest request) {
+	public String error(HttpServletRequest request, Exception ex) {
+		Object status = request.getAttribute("javax.servlet.error.status_code");
+		log.info("Status code :" + status);
+		log.info("Exception :" + ex.getMessage());
+		log.info("Exception type :" + ex.getClass());
 		return ERROR_VIEW;
 	}
 }

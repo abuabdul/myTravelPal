@@ -7,7 +7,7 @@
 <div class="divider">&nbsp;</div>
 <br />
 <div>
-	 myTravelPal is calendar view of my travel plans. Developed using fullcalendar plugin, 
+	 myTravelPal is a calendar view of my travel plans. Developed using fullcalendar plugin, 
 	 myTravelPal runs on mongodb with spring boot. Travel plans are fed into the system using a simple form.
 	 The form captures the travel mode, type, purpose/description of the travel, start and end time of the
 	 travel. One can customize the application for their own needs. For now, this application is show-casing 
