@@ -16,6 +16,15 @@
  */
 package com.abuabdul.mytravelpal.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.web.servlet.MockMvc;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -24,9 +33,19 @@ import org.testng.annotations.Test;
  */
 public class MyTravelPalErrorControllerTest {
 
-	@Test
-	public void testError() throws Exception {
-		throw new RuntimeException("not yet implemented");
+	@InjectMocks
+	private MyTravelPalErrorController errorController;
+
+	private MockMvc mockMvc;
+
+	@BeforeMethod
+	public void init() {
+		MockitoAnnotations.initMocks(this);
+		mockMvc = standaloneSetup(errorController).build();
 	}
 
+	@Test
+	public void testError() throws Exception {
+		mockMvc.perform(post("/error")).andExpect(status().isOk()).andExpect(view().name("generic/error"));
+	}
 }

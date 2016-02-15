@@ -51,9 +51,6 @@ public class MyTravelPalFunc {
 
 	private static final Logger log = LogManager.getLogger(MyTravelPalFunc.class.getName());
 
-	private static final SimpleDateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd");
-	private static final ObjectMapper MAPPER = new ObjectMapper();
-
 	public static final Function<MyTravelPalPlan, MyTravelPal> fromTravelPlanToTravelPal = new Function<MyTravelPalPlan, MyTravelPal>() {
 		@Override
 		public MyTravelPal apply(MyTravelPalPlan plan) {
@@ -119,7 +116,8 @@ public class MyTravelPalFunc {
 	}
 
 	public static final String eventJson(Object object) throws JsonProcessingException {
-		String jsonEventObjects = MAPPER.writeValueAsString(object);
+		final ObjectMapper mapper = new ObjectMapper();
+		String jsonEventObjects = mapper.writeValueAsString(object);
 		log.info("Event objects JSON :" + jsonEventObjects);
 		return jsonEventObjects;
 	}
@@ -168,6 +166,7 @@ public class MyTravelPalFunc {
 	}
 
 	public static String dateISO8601(String dateStr) throws ParseException {
+		final SimpleDateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = ISO8601.parse(dateStr);
 		return ISO8601.format(date);
 	}
