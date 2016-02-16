@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -33,6 +34,8 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
 import com.abuabdul.mytravelpal.data.document.MyTravelPal;
+import com.abuabdul.mytravelpal.data.field.LimitedField;
+import com.abuabdul.mytravelpal.data.field.Mandatory;
 import com.abuabdul.mytravelpal.data.model.CalendarEvent;
 import com.abuabdul.mytravelpal.data.model.MyTravelPalPlan;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -208,18 +211,44 @@ public class MyTravelPalFunc {
 		});
 	}
 
-	public static enum Mandatory {
-		TRAVELPLAN("travelPlanDesc"), STARTDATE("startDate"), TRAVELMODE("travelMode"), TRAVELTYPE("travelType");
-
-		private String mandatoryField;
-
-		Mandatory(String field) {
-			this.mandatoryField = field;
+	public static final boolean isXEditableField(String name) {
+		if (isNotEmpty(name)) {
+			return privateXEditableFieldsList.contains(name);
 		}
+		return false;
+	}
 
-		@Override
-		public String toString() {
-			return this.mandatoryField;
+	public static final Iterable<Field> privateXEditableFields = Iterables.filter(privateFieldsOfMyTravelPlan(),
+			new Predicate<Field>() {
+				@Override
+				public boolean apply(Field field) {
+					return Modifier.isPrivate(field.getModifiers())
+							&& xEditableLimitedFields().contains(field.getName());
+				}
+			});
+
+	public static final List<String> privateXEditableFieldsList = Lists
+			.transform(Lists.newArrayList(privateXEditableFields), new Function<Field, String>() {
+				@Override
+				public String apply(Field field) {
+					return field.getName();
+				}
+			});
+
+	public static final List<String> xEditableLimitedFields() {
+		return Lists.transform(Arrays.asList(LimitedField.values()), new Function<LimitedField, String>() {
+			@Override
+			public String apply(LimitedField field) {
+				return field.toString();
+			}
+		});
+	}
+
+	public static final boolean valueInTimeFormat(String value) {
+		if (isNotEmpty(value)) {
+			Pattern timePattern = Pattern.compile("\\d{2}:\\d{2}:\\d{2}");
+			return timePattern.matcher(value).matches();
 		}
+		return true;
 	}
 }

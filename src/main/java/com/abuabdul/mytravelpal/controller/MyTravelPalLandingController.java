@@ -21,10 +21,12 @@ import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToCalen
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPalToTravelPlan;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.fromTravelPlanToTravelPal;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.isMandatoryField;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.isXEditableField;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelModes;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelModesMap;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypes;
 import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.travelTypesMap;
+import static com.abuabdul.mytravelpal.util.MyTravelPalFunc.valueInTimeFormat;
 import static com.google.common.collect.Lists.transform;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
@@ -147,6 +149,11 @@ public class MyTravelPalLandingController {
 		if (isMandatoryField(name) && isEmpty(value)) {
 			json.put("status", "error");
 			json.put("msg", "cannot be empty");
+			return json.toString();
+		}
+		if (isXEditableField(name) && !valueInTimeFormat(value)) {
+			json.put("status", "error");
+			json.put("msg", "Invalid value");
 			return json.toString();
 		}
 		myTravelPalService.updateTravelPlan(pk, name, value);
