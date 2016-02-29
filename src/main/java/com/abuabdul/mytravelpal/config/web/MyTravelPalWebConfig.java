@@ -22,6 +22,10 @@ import javax.servlet.ServletException;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -64,12 +68,22 @@ public class MyTravelPalWebConfig {
 
 		};
 	}
-	
+
 	@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
 		tilesConfigurer.setDefinitions("/WEB-INF/tiles-def.xml");
 		return tilesConfigurer;
+	}
+
+	@Bean
+	public WebSecurityConfigurer<WebSecurity> webSecurityConfigurerAdapter() {
+		return new WebSecurityConfigurerAdapter() {
+			@Override
+			protected void configure(HttpSecurity http) throws Exception {
+				http.antMatcher("/**").authorizeRequests();
+			}
+		};
 	}
 
 }
