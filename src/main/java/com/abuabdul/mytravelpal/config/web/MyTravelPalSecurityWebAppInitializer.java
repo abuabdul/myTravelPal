@@ -16,12 +16,10 @@
  */
 package com.abuabdul.mytravelpal.config.web;
 
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
-
 /**
  * @author abuabdul
  *
  */
-public class MyTravelPalSecurityWebAppInitializer extends AbstractSecurityWebApplicationInitializer {
+public class MyTravelPalSecurityWebAppInitializer {
 
 }
