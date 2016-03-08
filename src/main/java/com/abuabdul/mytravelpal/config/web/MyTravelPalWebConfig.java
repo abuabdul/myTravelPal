@@ -26,6 +26,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -33,6 +34,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
+
+import com.abuabdul.mytravelpal.interceptor.MyTravelPalCorsInterceptor;
 
 /**
  * @author abuabdul
@@ -64,6 +67,11 @@ public class MyTravelPalWebConfig {
 			public void configureViewResolvers(ViewResolverRegistry registry) {
 				registry.tiles().viewClass(TilesView.class);
 				registry.jsp("/WEB-INF/jsp/", ".jsp").viewClass(JstlView.class);
+			}
+
+			@Override
+			public void addInterceptors(InterceptorRegistry registry) {
+				registry.addInterceptor(new MyTravelPalCorsInterceptor()).addPathPatterns("/secure/**");
 			}
 
 		};
