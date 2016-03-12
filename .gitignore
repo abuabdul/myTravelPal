@@ -3,6 +3,7 @@
 .project
 .settings/
 test-output/
+launch-artifacts/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
