@@ -19,7 +19,6 @@ package com.abuabdul.mytravelpal.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
@@ -28,9 +27,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  */
 public class MyTravelPalCorsInterceptor extends HandlerInterceptorAdapter {
 
-	@Value("${mytravelpal.app.origins}")
-	private String origins;
-
 	public static final String CREDENTIALS_NAME = "Access-Control-Allow-Credentials";
 	public static final String ORIGIN_NAME = "Access-Control-Allow-Origin";
 	public static final String METHODS_NAME = "Access-Control-Allow-Methods";
@@ -38,6 +34,12 @@ public class MyTravelPalCorsInterceptor extends HandlerInterceptorAdapter {
 	public static final String MAX_AGE_NAME = "Access-Control-Max-Age";
 
 	public static final String REQUEST_ORIGIN_NAME = "Origin";
+
+	private String origins;
+
+	public MyTravelPalCorsInterceptor(String origins) {
+		this.origins = origins;
+	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

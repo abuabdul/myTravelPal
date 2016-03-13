@@ -16,16 +16,12 @@
  */
 package com.abuabdul.mytravelpal.config.web;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
-import org.springframework.boot.context.embedded.ServletContextInitializer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -44,14 +40,21 @@ import com.abuabdul.mytravelpal.interceptor.MyTravelPalCorsInterceptor;
 @Configuration
 public class MyTravelPalWebConfig {
 
+	@Value("${mytravelpal.app.origins}")
+	private String origins;
+
+	public MyTravelPalWebConfig() {
+	}
+
 	@Bean
-	public ServletContextInitializer servletContextInitializer() {
-		return new ServletContextInitializer() {
-			@Override
-			public void onStartup(ServletContext servletContext) throws ServletException {
-				new MyTravelPalWebAppInitializer().onStartup(servletContext);
-			}
-		};
+	public ServletRegistrationBean dispatcherServletRegistration() {
+		AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
+		ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(
+				new DispatcherServlet(webContext));
+		servletRegistrationBean.setName("mytravelpal-spring");
+		servletRegistrationBean.setLoadOnStartup(1);
+		servletRegistrationBean.addUrlMappings("/", "*.go");
+		return servletRegistrationBean;
 	}
 
 	@Bean
@@ -71,7 +74,8 @@ public class MyTravelPalWebConfig {
 
 			@Override
 			public void addInterceptors(InterceptorRegistry registry) {
-				registry.addInterceptor(new MyTravelPalCorsInterceptor()).addPathPatterns("/secure/**");
+				registry.addInterceptor(new MyTravelPalCorsInterceptor(origins)).addPathPatterns("/secure/**")
+						.excludePathPatterns("/resources/**");
 			}
 
 		};
@@ -83,15 +87,4 @@ public class MyTravelPalWebConfig {
 		tilesConfigurer.setDefinitions("/WEB-INF/tiles-def.xml");
 		return tilesConfigurer;
 	}
-
-	@Bean
-	public WebSecurityConfigurer<WebSecurity> webSecurityConfigurerAdapter() {
-		return new WebSecurityConfigurerAdapter() {
-			@Override
-			protected void configure(HttpSecurity http) throws Exception {
-				http.antMatcher("/**").authorizeRequests();
-			}
-		};
-	}
-
 }
